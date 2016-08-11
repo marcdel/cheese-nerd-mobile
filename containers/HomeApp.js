@@ -1,5 +1,6 @@
 /* @flow */
 import React, { Component } from "react";
+import { View } from 'react-native';
 
 import Home from "../components/Home";
 
@@ -26,7 +27,9 @@ export default class HomeApp extends Component {
 
   render() {
     return (
-      <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
+      <View style={{marginTop: 20}}>
+        <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
+      </View>
     );
   }
 }

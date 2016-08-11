@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
+  ScrollView,
   View
 } from 'react-native';
 
@@ -14,15 +15,15 @@ export default class CheeseList extends Component {
     return (
       <View key={key}>
         <Cheese cheese={cheese} />
-      </ View>
+      </View>
     );
   }
 
   render () {
     return (
-      <View>
+      <ScrollView style={styles.container}>
           {Object.keys(this.props.cheeses).map(this.renderCheese.bind(this))}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -32,6 +33,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  cheese: {
+    flex: 1
+  }
 });
 
 CheeseList.propTypes = {

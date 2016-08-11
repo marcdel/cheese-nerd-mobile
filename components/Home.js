@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
 import CheeseList from './CheeseList';
@@ -11,13 +11,19 @@ import CheeseList from './CheeseList';
 export default class Home extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Top Cheeses</Text>
         <CheeseList cheeses={this.props.topCheeseFilter()} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 Home.propTypes = {
   cheeses: React.PropTypes.object.isRequired,
