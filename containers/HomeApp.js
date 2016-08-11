@@ -27,9 +27,7 @@ export default class HomeApp extends Component {
 
   render() {
     return (
-      <View style={{marginTop: 20}}>
         <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
-      </View>
     );
   }
 }
