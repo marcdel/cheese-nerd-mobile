@@ -13,7 +13,7 @@ export default class CheeseList extends Component {
     var cheese = this.props.cheeses[key];
 
     return (
-      <View key={key}>
+      <View key={key} style={styles.cheese}>
         <Cheese cheese={cheese} />
       </View>
     );
@@ -21,8 +21,10 @@ export default class CheeseList extends Component {
 
   render () {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
           {Object.keys(this.props.cheeses).map(this.renderCheese.bind(this))}
+        </View>
       </ScrollView>
     );
   }
@@ -31,10 +33,10 @@ export default class CheeseList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
   },
   cheese: {
-    flex: 1
+    flex: 1,
+    marginTop: 20
   }
 });
 
