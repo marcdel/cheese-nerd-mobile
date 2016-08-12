@@ -21,10 +21,8 @@ export default class CheeseList extends Component {
 
   render () {
     return (
-      <ScrollView>
-        <View style={styles.container}>
-          {Object.keys(this.props.cheeses).map(this.renderCheese.bind(this))}
-        </View>
+      <ScrollView style={styles.container}>
+        {Object.keys(this.props.cheeses).map(this.renderCheese.bind(this))}
       </ScrollView>
     );
   }
