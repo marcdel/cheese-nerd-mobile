@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 
-import Home from "containers/HomeApp";
+import HomeApp from "./containers/HomeApp";
 
 class CheeseNerdMobile extends Component {
   render() {
