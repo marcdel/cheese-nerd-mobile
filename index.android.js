@@ -2,20 +2,17 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
 } from 'react-native';
 
-import Index from "./index";
+import MasterLayout from "./containers/MasterLayout";
 
 class CheeseNerdMobile extends Component {
   render() {
+    console.log(<MasterLayout/>);
     return (
-      <Index />
+      <MasterLayout />
     );
   }
 }
-
-const styles = StyleSheet.create({
-});
 
 AppRegistry.registerComponent('CheeseNerdMobile', () => CheeseNerdMobile);
