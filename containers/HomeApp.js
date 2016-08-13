@@ -6,7 +6,6 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import Tabs from 'react-native-tabs';
 
 import Home from "../components/Home";
 
@@ -37,21 +36,8 @@ export default class HomeApp extends Component {
   }
 
   render() {
-    const { page } = this.state;
-
     return (
-      <View style={styles.container}>
-        <Tabs
-          selected={page}
-          style={styles.tabs}
-          selectedStyle={{color:'red'}} onSelect={el=>this.tabSelected(el)}>
-            <Text name="home">Home</Text>
-            <Text name="search">Search</Text>
-        </Tabs>
-        <View style={styles.scrollView}>
-          <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
-        </View>
-      </View>
+      <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
     );
   }
 }
