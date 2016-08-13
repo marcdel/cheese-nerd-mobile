@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Component } from "react";
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 import Tabs from 'react-native-tabs';
 import {
   AppRegistry,
@@ -25,6 +25,7 @@ export default class MasterLayout extends Component {
 
   tabSelected(element) {
     this.setState({page:element.props.name});
+    Actions.home({type: "reset"});
   }
 
   render() {
