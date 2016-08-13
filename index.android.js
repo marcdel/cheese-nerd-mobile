@@ -3,16 +3,14 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View
 } from 'react-native';
 
-import HomeApp from "./containers/HomeApp";
+import Index from "./index";
 
 class CheeseNerdMobile extends Component {
   render() {
     return (
-      <HomeApp />
+      <Index />
     );
   }
 }

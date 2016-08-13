@@ -14,8 +14,6 @@ export default class Cheese extends Component {
       uri: cheese.image
     };
 
-    console.log(imageSource);
-
     return (
       <View>
         <Text>

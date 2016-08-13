@@ -3,19 +3,30 @@ import React, { Component } from "react";
 import {
   StyleSheet,
   ScrollView,
-  View
+  View,
+  TouchableHighlight,
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import Cheese from "./Cheese";
 
 export default class CheeseList extends Component {
+  redirectToCheese(cheese){
+    Actions.cheese({
+      title: cheese.name,
+      cheese: cheese
+    });
+  }
+
   renderCheese(key){
     var cheese = this.props.cheeses[key];
 
     return (
-      <View key={key} style={styles.cheese}>
-        <Cheese cheese={cheese} />
-      </View>
+      <TouchableHighlight key={key} style={styles.cheese} onPress={this.redirectToCheese.bind(this, cheese)}>
+        <View>
+          <Cheese cheese={cheese} />
+        </View>
+      </TouchableHighlight>
     );
   }
 
