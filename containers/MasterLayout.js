@@ -23,9 +23,14 @@ export default class MasterLayout extends Component {
     };
   }
 
-  tabSelected(element) {
-    this.setState({page:element.props.name});
+  onHomePressed() {
+    this.setState({page:"home"});
     Actions.home({type: "reset"});
+  }
+
+  onSearchPressed() {
+    // this.setState({page:"search"});
+    // Actions.search({type: "reset"});
   }
 
   render() {
@@ -36,9 +41,9 @@ export default class MasterLayout extends Component {
         <Tabs
           selected={page}
           style={styles.tabs}
-          selectedStyle={{color:'red'}} onSelect={el=>this.tabSelected(el)}>
-            <Text name="home">Home</Text>
-            <Text name="search">Search</Text>
+          selectedStyle={{color:'red'}}>
+            <Text name="home" onPress={this.onHomePressed.bind(this)}>Home</Text>
+            <Text name="search" onPress={this.onSearchPressed.bind(this)}>Search</Text>
         </Tabs>
         <View style={styles.scrollView}>
           <Router>
