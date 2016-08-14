@@ -48,7 +48,7 @@ export default class MasterLayout extends Component {
         <View style={styles.scrollView}>
           <Router>
             <Scene key="root">
-              <Scene key="home" component={HomeApp} title="Home" initial={true} />
+              <Scene key="home" component={HomeApp} title="Cheese Nerd" initial={true} />
               <Scene key="cheese" component={Cheese} />
             </Scene>
           </Router>
