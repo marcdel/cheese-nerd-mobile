@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView
 } from 'react-native';
 
 import CheeseList from './CheeseList';
@@ -21,8 +22,8 @@ export default class Home extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     flex: 1,
+    marginTop: 20,
   },
 });
 

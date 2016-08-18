@@ -1,17 +1,21 @@
 /* @flow */
 import React, { Component } from "react";
+import { AppRegistry, View, ScrollView, Text, StyleSheet } from 'react-native';
 import { Router, Scene, Actions } from 'react-native-router-flux';
-import Tabs from 'react-native-tabs';
-import {
-  AppRegistry,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import { Provider, connect } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+
+const RouterWithRedux = connect()(Router);
+import reducers from '../reducers';
 
 
 import HomeApp from "./HomeApp";
 import Cheese from "../components/Cheese";
+
+const middleware = [/* ... middleware (i.e. thunk) */];
+const store = compose(
+  applyMiddleware(...middleware)
+)(createStore)(reducers);
 
 export default class MasterLayout extends Component {
   constructor(){
@@ -19,39 +23,21 @@ export default class MasterLayout extends Component {
 
     this.state = {
       cheeses: require('../sample-cheeses'),
-      page: 'home',
     };
   }
 
-  onHomePressed() {
-    this.setState({page:"home"});
-    Actions.home({type: "reset"});
-  }
-
-  onSearchPressed() {
-    // this.setState({page:"search"});
-    // Actions.search({type: "reset"});
-  }
-
   render() {
-    const { page } = this.state;
-
     return (
-      <View style={styles.container}>
-        <Tabs
-          selected={page}
-          style={styles.tabs}
-          selectedStyle={{color:'red'}}>
-            <Text name="home" onPress={this.onHomePressed.bind(this)}>Home</Text>
-            <Text name="search" onPress={this.onSearchPressed.bind(this)}>Search</Text>
-        </Tabs>
-        <View style={styles.scrollView}>
-          <Router>
-            <Scene key="root">
-              <Scene key="home" component={HomeApp} title="Cheese Nerd" initial={true} />
-              <Scene key="cheese" component={Cheese} />
-            </Scene>
-          </Router>
+      <View>
+        <View>
+          <Provider store={store}>
+            <RouterWithRedux>
+              <Scene key="root">
+                <Scene key="home" component={HomeApp} title="Cheese Nerd" initial={true} />
+                <Scene key="cheese" component={Cheese} />
+              </Scene>
+            </RouterWithRedux>
+          </Provider>
         </View>
       </View>
     );
@@ -60,15 +46,11 @@ export default class MasterLayout extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     height: 665
   },
   scrollView: {
+    flex: 1,
     height: 625
-  },
-  tabs: {
-    backgroundColor:'white',
-    height: 40,
-    borderTopColor: 'red',
-    borderTopWidth: 2,
   },
 });

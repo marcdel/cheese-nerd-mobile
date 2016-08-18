@@ -1,21 +1,17 @@
 /* @flow */
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, } from 'react-native';
+import { connect } from 'react-redux';
+import Tabs from 'react-native-tabs';
 
 import Home from "../components/Home";
 
-export default class HomeApp extends Component {
+class HomeApp extends Component {
   constructor(){
     super();
 
     this.state = {
       cheeses: require('../sample-cheeses'),
-      page: 'home',
     };
   }
 
@@ -31,13 +27,33 @@ export default class HomeApp extends Component {
     }, {});
   }
 
-  tabSelected(element) {
-    this.setState({page:element.props.name});
+  onHomePressed() {
+    this.setState({page:"home"});
+    Actions.home({type: "reset"});
+  }
+
+  onSearchPressed() {
+    // this.setState({page:"search"});
+    // Actions.search({type: "reset"});
   }
 
   render() {
+    const { page } = this.state;
+
+    console.log(this.props.routes.scene);
     return (
-      <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
+      <View style={styles.container}>
+        <Tabs
+          selected={page}
+          style={styles.tabs}
+          selectedStyle={{color:'red'}}>
+            <Text name="home" onPress={()=>Actions.home({type: "reset"})}>Home</Text>
+            <Text name="search" onPress={this.onSearchPressed.bind(this)}>Search</Text>
+        </Tabs>
+        <ScrollView style={styles.scrollView}>
+          <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -61,3 +77,5 @@ Home.propTypes = {
   cheeses: React.PropTypes.object.isRequired,
   topCheeseFilter: React.PropTypes.func.isRequired
 };
+
+export default connect(({routes}) => ({routes}))(HomeApp);
