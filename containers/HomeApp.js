@@ -27,16 +27,6 @@ class HomeApp extends Component {
     }, {});
   }
 
-  onHomePressed() {
-    this.setState({page:"home"});
-    Actions.home({type: "reset"});
-  }
-
-  onSearchPressed() {
-    // this.setState({page:"search"});
-    // Actions.search({type: "reset"});
-  }
-
   render() {
     const { page } = this.state;
 
@@ -48,7 +38,7 @@ class HomeApp extends Component {
           style={styles.tabs}
           selectedStyle={{color:'red'}}>
             <Text name="home" onPress={()=>Actions.home({type: "reset"})}>Home</Text>
-            <Text name="search" onPress={this.onSearchPressed.bind(this)}>Search</Text>
+            <Text name="search">Search</Text>
         </Tabs>
         <ScrollView style={styles.scrollView}>
           <Home cheeses={this.state.cheeses} topCheeseFilter={this.topCheeseFilter.bind(this)} />
