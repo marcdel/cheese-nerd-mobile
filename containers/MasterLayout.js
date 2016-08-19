@@ -29,28 +29,17 @@ export default class MasterLayout extends Component {
   render() {
     return (
       <View>
-        <View>
-          <Provider store={store}>
-            <RouterWithRedux>
-              <Scene key="root">
-                <Scene key="home" component={HomeApp} title="Cheese Nerd" initial={true} />
-                <Scene key="cheese" component={Cheese} />
-              </Scene>
-            </RouterWithRedux>
-          </Provider>
-        </View>
+        <Provider store={store}>
+          <RouterWithRedux>
+            <Scene key="root">
+              <Scene key="home" component={HomeApp} title="Cheese Nerd" initial={true} />
+              <Scene key="cheese" component={Cheese} />
+            </Scene>
+          </RouterWithRedux>
+        </Provider>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: 665
-  },
-  scrollView: {
-    flex: 1,
-    height: 625
-  },
-});
+const styles = StyleSheet.create({ });

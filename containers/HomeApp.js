@@ -60,16 +60,19 @@ class HomeApp extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    // flex: 1,
     height: 665
   },
   scrollView: {
-    height: 625
+    // flex: 6,
+    // height: 605
   },
   tabs: {
-    backgroundColor:'white',
+    // flex: 1,
     height: 40,
-    borderTopColor: 'red',
     borderTopWidth: 2,
+    backgroundColor:'white',
+    borderTopColor: 'red',
   },
 });
 
