@@ -5,64 +5,23 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { AppRegistry } from 'react-native';
 
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Footer,
-  FooterTab,
-  Button,
-  Icon
-} from 'native-base';
+import App from './src/containers/App';
+import reducers from './src/reducers';
+
+const store = createStore(reducers);
 
 export default class CheeseNerdMobile extends Component {
   render() {
     return (
-      <Container>
-        <Header>
-          <Title>Header</Title>
-        </Header>
-
-        <Content>
-        </Content>
-
-        <Footer>
-          <FooterTab>
-            <Button transparent>
-              <Icon name='ios-call' />
-            </Button>
-          </FooterTab>
-        </Footer>
-      </Container>
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('CheeseNerdMobile', () => CheeseNerdMobile);
