@@ -49,11 +49,11 @@ export class App extends Component {
 
         <Footer>
           <FooterTab>
-            <Button transparent> My Board </Button>
-            <Button transparent> Search </Button>
-            <Button transparent> Add </Button>
-            <Button transparent> Promo </Button>
-            <Button transparent> Account </Button>
+            <Button transparent><Icon name='ios-restaurant' /></Button>
+            <Button transparent><Icon name='ios-search' /></Button>
+            <Button transparent><Icon name='ios-add-circle' /></Button>
+            <Button transparent><Icon name='ios-ribbon' /></Button>
+            <Button transparent><Icon name='ios-person' /></Button>
           </FooterTab>
         </Footer>
       </Container>
