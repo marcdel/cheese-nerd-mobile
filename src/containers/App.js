@@ -35,7 +35,9 @@ export class App extends Component {
    * @return {(Promise|undefined)} If this method returns a promise, the router
    * will wait for the promise to resolve before the container is loaded.
    */
-  static gsBeforeRoute (/* {dispatch}, renderProps, query, serverProps */) {}
+  renderCheese (key) {
+    return (<Text key={key}>{this.props.cheeses[key].name}</Text>);
+  }
 
   render () {
     return (
@@ -45,6 +47,9 @@ export class App extends Component {
         </Header>
 
         <Content>
+          <Text>
+            {Object.keys(this.props.cheeses).map((key) => this.renderCheese(key))}
+          </Text>
         </Content>
 
         <Footer>
@@ -61,7 +66,13 @@ export class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    cheeses: state.application.cheeses
+  }
+}
+
 export default connect(
-  (/* state */) => ({/** _INSERT_STATE_  **/}),
+  (state) => (mapStateToProps),
   (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
 )(App);
