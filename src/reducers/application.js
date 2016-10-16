@@ -1,5 +1,6 @@
 /* @flow */
 const INITIAL_STATE = {
+  tab: 'search',
   cheeses: require('../sample-cheeses')
 };
 
