@@ -20,7 +20,9 @@ import {
   Icon
 } from 'native-base';
 
+import { tabChanged } from '../actions/application';
 import Search from './Search';
+import MyBoard from './MyBoard';
 
 export class App extends Component {
 
@@ -31,10 +33,15 @@ export class App extends Component {
         <Header>
           <Title>
             { tab === 'search' && 'Search' }
+            { tab === 'myBoard' && 'My Board' }
           </Title>
         </Header>
 
         <Content>
+          { tab === 'myBoard' &&
+            <MyBoard reviews={this.props.reviews} />
+          }
+
           { tab === 'search' &&
             <Search cheeses={this.props.cheeses} />
           }
@@ -42,8 +49,8 @@ export class App extends Component {
 
         <Footer>
           <FooterTab>
-            <Button transparent><Icon name='ios-restaurant' /></Button>
-            <Button transparent><Icon name='ios-search' /></Button>
+            <Button onPress={() => this.props.tabChanged('myBoard')} transparent><Icon name='ios-restaurant' /></Button>
+            <Button onPress={() => this.props.tabChanged('search')} transparent><Icon name='ios-search' /></Button>
             <Button transparent><Icon name='ios-add-circle' /></Button>
             <Button transparent><Icon name='ios-ribbon' /></Button>
             <Button transparent><Icon name='ios-person' /></Button>
@@ -57,11 +64,12 @@ export class App extends Component {
 const mapStateToProps = (state) => {
   return {
     tab: state.application.tab,
-    cheeses: state.application.cheeses
+    cheeses: state.cheeses,
+    reviews: state.reviews
   }
 }
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged}, dispatch)
 )(App);
