@@ -21,8 +21,9 @@ import {
 } from 'native-base';
 
 import { tabChanged } from '../actions/application';
-import Search from './Search';
 import MyBoard from './MyBoard';
+import Search from './Search';
+import Add from './Add';
 
 export class App extends Component {
 
@@ -34,6 +35,7 @@ export class App extends Component {
           <Title>
             { tab === 'search' && 'Search' }
             { tab === 'myBoard' && 'My Board' }
+            { tab === 'add' && 'Add' }
           </Title>
         </Header>
 
@@ -45,13 +47,17 @@ export class App extends Component {
           { tab === 'search' &&
             <Search cheeses={this.props.cheeses} />
           }
+
+          { tab === 'add' &&
+            <Add />
+          }
         </Content>
 
         <Footer>
           <FooterTab>
             <Button onPress={() => this.props.tabChanged('myBoard')} transparent><Icon name='ios-restaurant' /></Button>
             <Button onPress={() => this.props.tabChanged('search')} transparent><Icon name='ios-search' /></Button>
-            <Button transparent><Icon name='ios-add-circle' /></Button>
+            <Button onPress={() => this.props.tabChanged('add')} transparent><Icon name='ios-add-circle' /></Button>
             <Button transparent><Icon name='ios-ribbon' /></Button>
             <Button transparent><Icon name='ios-person' /></Button>
           </FooterTab>
