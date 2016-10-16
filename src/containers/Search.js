@@ -16,6 +16,8 @@ import {
   Icon
 } from 'native-base';
 
+import Rating from '../components/Rating';
+
 export class Search extends Component {
   constructor() {
     super();
@@ -47,10 +49,7 @@ export class Search extends Component {
           <CardItem>
             <Icon name='ios-checkmark-circle-outline' />
             <Text>Check-In</Text>
-            <Icon name='ios-star' />
-            <Icon name='ios-star' />
-            <Icon name='ios-star' />
-            <Icon name='ios-star-outline' />
+            <Rating rating={cheese.rating} />
           </CardItem>
         </Card>
       </ListItem>
