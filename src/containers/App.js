@@ -24,6 +24,7 @@ import { tabChanged } from '../actions/application';
 import MyBoard from './MyBoard';
 import Search from './Search';
 import Add from './Add';
+import Promo from './Promo';
 
 export class App extends Component {
 
@@ -36,6 +37,7 @@ export class App extends Component {
             { tab === 'search' && 'Search' }
             { tab === 'myBoard' && 'My Board' }
             { tab === 'add' && 'Add' }
+            { tab === 'promo' && 'Promo' }
           </Title>
         </Header>
 
@@ -51,6 +53,10 @@ export class App extends Component {
           { tab === 'add' &&
             <Add />
           }
+
+          { tab === 'promo' &&
+            <Promo />
+          }
         </Content>
 
         <Footer>
@@ -58,7 +64,7 @@ export class App extends Component {
             <Button onPress={() => this.props.tabChanged('myBoard')} transparent><Icon name='ios-restaurant' /></Button>
             <Button onPress={() => this.props.tabChanged('search')} transparent><Icon name='ios-search' /></Button>
             <Button onPress={() => this.props.tabChanged('add')} transparent><Icon name='ios-add-circle' /></Button>
-            <Button transparent><Icon name='ios-ribbon' /></Button>
+            <Button onPress={() => this.props.tabChanged('promo')} transparent><Icon name='ios-ribbon' /></Button>
             <Button transparent><Icon name='ios-person' /></Button>
           </FooterTab>
         </Footer>
