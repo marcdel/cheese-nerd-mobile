@@ -16,6 +16,8 @@ import {
   Icon
 } from 'native-base';
 
+import Rating from '../components/Rating';
+
 export class MyBoard extends Component {
   constructor() {
     super();
@@ -45,10 +47,7 @@ export class MyBoard extends Component {
               </Text>
             </CardItem>
             <CardItem>
-              <Icon name='ios-star' />
-              <Icon name='ios-star' />
-              <Icon name='ios-star' />
-              <Icon name='ios-star-outline' />
+              <Rating rating={review.rating} />
             </CardItem>
           </CardItem>
         </Card>

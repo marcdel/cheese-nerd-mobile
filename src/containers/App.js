@@ -15,9 +15,6 @@ import {
   Title,
   Content,
   Footer,
-  FooterTab,
-  Button,
-  Icon
 } from 'native-base';
 
 import { tabChanged } from '../actions/application';
@@ -26,6 +23,7 @@ import Search from './Search';
 import Add from './Add';
 import Promo from './Promo';
 import Account from './Account';
+import BottomNav from '../components/BottomNav';
 
 export class App extends Component {
 
@@ -67,13 +65,7 @@ export class App extends Component {
         </Content>
 
         <Footer>
-          <FooterTab>
-            <Button onPress={() => this.props.tabChanged('myBoard')} transparent><Icon name='ios-restaurant' /></Button>
-            <Button onPress={() => this.props.tabChanged('search')} transparent><Icon name='ios-search' /></Button>
-            <Button onPress={() => this.props.tabChanged('add')} transparent><Icon name='ios-add-circle' /></Button>
-            <Button onPress={() => this.props.tabChanged('promo')} transparent><Icon name='ios-ribbon' /></Button>
-            <Button onPress={() => this.props.tabChanged('account')} transparent><Icon name='ios-person' /></Button>
-          </FooterTab>
+          <BottomNav tab={this.props.tab} tabChanged={this.props.tabChanged} />
         </Footer>
       </Container>
     );
