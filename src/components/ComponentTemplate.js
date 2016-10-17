@@ -22,3 +22,5 @@ export default class ComponentTemplate extends Component {
 
 ComponentTemplate.propTypes = {
 };
+
+const styles = StyleSheet.create({ });
