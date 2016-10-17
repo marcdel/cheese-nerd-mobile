@@ -15,7 +15,7 @@ export default class TitleBar extends Component {
 
   render () {
     const tab = this.props.tab;
-    
+
     return (
       <Title>
         { tab === 'search' && 'Search' }

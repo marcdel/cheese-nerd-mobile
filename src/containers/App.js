@@ -22,8 +22,9 @@ import Search from './Search';
 import Add from './Add';
 import Promo from './Promo';
 import Account from './Account';
-import BottomNav from '../components/BottomNav';
 import TitleBar from '../components/TitleBar';
+import MainContent from '../components/MainContent';
+import BottomNav from '../components/BottomNav';
 
 export class App extends Component {
 
@@ -37,25 +38,10 @@ export class App extends Component {
         </Header>
 
         <Content>
-          { tab === 'myBoard' &&
-            <MyBoard reviews={this.props.reviews} />
-          }
-
-          { tab === 'search' &&
-            <Search cheeses={this.props.cheeses} />
-          }
-
-          { tab === 'add' &&
-            <Add />
-          }
-
-          { tab === 'promo' &&
-            <Promo />
-          }
-
-          { tab === 'account' &&
-            <Account />
-          }
+          <MainContent
+            tab={tab}
+            cheeses={this.props.cheeses}
+            reviews={this.props.reviews} />
         </Content>
 
         <Footer>
