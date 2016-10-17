@@ -12,7 +12,6 @@ import {bindActionCreators} from 'redux';
 import {
   Container,
   Header,
-  Title,
   Content,
   Footer,
 } from 'native-base';
@@ -24,6 +23,7 @@ import Add from './Add';
 import Promo from './Promo';
 import Account from './Account';
 import BottomNav from '../components/BottomNav';
+import TitleBar from '../components/TitleBar';
 
 export class App extends Component {
 
@@ -33,13 +33,7 @@ export class App extends Component {
     return (
       <Container>
         <Header>
-          <Title>
-            { tab === 'search' && 'Search' }
-            { tab === 'myBoard' && 'My Board' }
-            { tab === 'add' && 'Add' }
-            { tab === 'promo' && 'Promo' }
-            { tab === 'account' && 'Account' }
-          </Title>
+          <TitleBar tab={tab} />
         </Header>
 
         <Content>
