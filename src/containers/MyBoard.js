@@ -29,7 +29,6 @@ export class MyBoard extends Component {
     const review = this.props.reviews[key];
     const cheese = this.props.cheeses[review.cheeseId];
     const image = require('../img/330.png');
-    console.log(review);
 
     return (
       <ListItem key={key}>

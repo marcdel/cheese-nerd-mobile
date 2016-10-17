@@ -17,7 +17,6 @@ export default class BottomNav extends Component {
   }
 
   render () {
-    console.log("In footer");
     return (
       <FooterTab>
         <Button onPress={() => this.props.tabChanged('myBoard')} transparent>My Board<Icon name='ios-restaurant' /></Button>

@@ -12,7 +12,7 @@ export default (state=INITIAL_STATE, action) => {
       return {
         ...state,
         tab: action.tab,
-      }
+      };
     default:
       return state;
   }
