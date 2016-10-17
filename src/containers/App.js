@@ -1,10 +1,7 @@
 /* @flow */
 import React, { Component } from "react";
 import {
-  View,
-  Text,
   StyleSheet,
-  ScrollView,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -17,11 +14,6 @@ import {
 } from 'native-base';
 
 import { tabChanged } from '../actions/application';
-import MyBoard from './MyBoard';
-import Search from './Search';
-import Add from './Add';
-import Promo from './Promo';
-import Account from './Account';
 import TitleBar from '../components/TitleBar';
 import MainContent from '../components/MainContent';
 import BottomNav from '../components/BottomNav';
