@@ -16,7 +16,7 @@ export class Account extends Component {
   render () {
     return (
       <View>
-        <Text>Account</Text>
+        <Text>{this.props.userId}</Text>
       </View>
     );
   }
@@ -24,6 +24,7 @@ export class Account extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    userId: state.user.userId
   }
 }
 
