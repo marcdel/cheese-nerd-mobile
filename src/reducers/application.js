@@ -3,7 +3,6 @@ import * as actions from '../actions/application';
 
 const INITIAL_STATE = {
   tab: 'search',
-  cheeses: require('../sample-cheeses')
 };
 
 export default (state=INITIAL_STATE, action) => {
