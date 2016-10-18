@@ -32,7 +32,7 @@ export default class BottomNav extends Component {
     const tab = this.props.tab;
 
     return (
-      <FooterTab>
+      <FooterTab theme={theme.tabs}>
         {this.button('myBoard', 'My Board', 'ios-restaurant')}
         {this.button('search', 'Search', 'ios-search')}
         {this.button('add', 'Add', 'ios-add-circle')}
@@ -42,6 +42,13 @@ export default class BottomNav extends Component {
     );
   }
 }
+
+const theme = {
+  tabs: {
+    tabActiveBgColor: 'transparent',
+    tabBarActiveTextColor: '#3498db'
+  }
+};
 
 BottomNav.propTypes = {
   tab: React.PropTypes.string.isRequired,
