@@ -7,25 +7,14 @@ import {
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {
-  List,
-  ListItem,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Icon
-} from 'native-base';
-
 import { queryChanged, cheesesFiltered } from '../actions/search';
-import Rating from '../components/Rating';
+import CheeseList from '../components/CheeseList';
 import SearchBar from '../components/SearchBar';
 
 export class Search extends Component {
   constructor() {
     super();
 
-    this.renderItem = this.renderItem.bind(this);
     this.filterList = this.filterList.bind(this);
   }
 
@@ -56,44 +45,11 @@ export class Search extends Component {
     this.props.cheesesFiltered(filteredCheeses);
   }
 
-  renderItem (key) {
-    const cheese = this.props.cheeses[key];
-    const image = require('../img/330.png');
-
-    return (
-      <ListItem key={key}>
-        <Card>
-          <CardItem>
-            <Text>{cheese.name}</Text>
-            <Text note>{cheese.name}</Text>
-          </CardItem>
-
-          <CardItem>
-            <Thumbnail square size={330} source={image} />
-            {/*
-              <Icon name='ios-image' />
-              <Image source={{ uri: cheese.image }}
-                style={{ resizeMode: 'cover', width: 400, height: 400 }} />
-            */}
-          </CardItem>
-
-          <CardItem>
-            <Icon name='ios-checkmark-circle-outline' />
-            <Text>Check-In</Text>
-            <Rating rating={cheese.rating} />
-          </CardItem>
-        </Card>
-      </ListItem>
-    );
-  }
-
   render () {
     return (
       <View>
         <SearchBar query={this.props.query} textChanged={this.filterList} />
-        <List>
-          {Object.keys(this.props.filteredCheeses).map((key) => this.renderItem(key))}
-        </List>
+        <CheeseList cheeses={this.props.filteredCheeses} />
       </View>
     );
   }
