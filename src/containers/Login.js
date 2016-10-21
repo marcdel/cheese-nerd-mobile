@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {FBLoginManager} from 'react-native-facebook-login';
 
 import {
   Container,
@@ -23,8 +24,20 @@ export class Login extends Component {
     super();
   }
 
-  render () {
+  loginPressed () {
+    FBLoginManager.loginWithPermissions(["email","public_profile","user_friends"], function(error, data){
+      if (!error) {
+        console.log("Login data: ", data);
+      } else {
+        console.log("Error: ", error);
+      }
+    });
+
     const userId = Math.random();
+    this.props.login(userId);
+  }
+
+  render () {
     return (
       <Container>
         <Header>
@@ -32,7 +45,7 @@ export class Login extends Component {
         </Header>
 
         <Content style={{paddingTop: 250}}>
-          <Button onPress={() => this.props.login(userId)} block>Log In</Button>
+          <Button onPress={() => this.loginPressed()} block>Log In</Button>
         </Content>
       </Container>
     );
