@@ -4,6 +4,8 @@ import * as actions from '../actions/user';
 const INITIAL_STATE = {
   credentials: {},
   photo: {},
+  name: "",
+  email: "",
   loggedIn: false,
 };
 
@@ -25,6 +27,12 @@ export default (state=INITIAL_STATE, action) => {
       return {
         ...state,
         photo: action.photo,
+      };
+    case actions.DETAILS_ADDED:
+      return {
+        ...state,
+        name: action.name,
+        email: action.email,
       };
     default:
       return state;

@@ -21,8 +21,6 @@ export class Account extends Component {
     const photo = this.props.photo;
     return (
       <View>
-        <Text>{this.props.userId}</Text>
-        <Image source={{ uri: photo.url }} style={{ width: photo.width, height: photo.height }} />
         <FBLogin style={{ marginBottom: 10, }}
           permissions={["email","public_profile","user_friends"]}
           loginBehavior={FBLoginManager.LoginBehaviors.Native}
@@ -30,6 +28,9 @@ export class Account extends Component {
             this.props.logout();
             console.log("Logged out.");
           }} />
+        <Text>{this.props.name}</Text>
+        <Text>{this.props.email}</Text>
+        <Image source={{ uri: photo.url }} style={{ width: photo.width, height: photo.height }} />
       </View>
     );
   }
@@ -39,6 +40,8 @@ const mapStateToProps = (state) => {
   return {
     userId: state.user.credentials.userId,
     photo: state.user.photo,
+    name: state.user.name,
+    email: state.user.email,
   }
 }
 

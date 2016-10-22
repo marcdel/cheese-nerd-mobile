@@ -17,7 +17,7 @@ import {
   Button,
 } from 'native-base';
 
-import { login, logout, photoAdded } from '../actions/user';
+import { login, logout, photoAdded, detailsAdded } from '../actions/user';
 
 export class Login extends Component {
   constructor() {
@@ -53,9 +53,7 @@ export class Login extends Component {
     fetch(api)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log("Data: ", responseData);
-      console.log("User name: ", responseData.name);
-      console.log("User email: ", responseData.email);
+      this.props.detailsAdded(responseData.name, responseData.email);
     }).done();
   }
 
@@ -120,5 +118,5 @@ Login.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({ login, logout, photoAdded }, dispatch)
+  (dispatch) => bindActionCreators({ login, logout, photoAdded, detailsAdded }, dispatch)
 )(Login);
