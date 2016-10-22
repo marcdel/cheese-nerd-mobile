@@ -1,8 +1,9 @@
 /* @flow */
-import React, { Component, Image } from "react";
+import React, { Component } from "react";
 import {
   View,
   Text,
+  Image,
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
@@ -17,9 +18,11 @@ export class Account extends Component {
   }
 
   render () {
+    const photo = this.props.photo;
     return (
       <View>
         <Text>{this.props.userId}</Text>
+        <Image source={{ uri: photo.url }} style={{ width: photo.width, height: photo.height }} />
         <FBLogin style={{ marginBottom: 10, }}
           permissions={["email","public_profile","user_friends"]}
           loginBehavior={FBLoginManager.LoginBehaviors.Native}
@@ -34,7 +37,8 @@ export class Account extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.user.credentials.userId
+    userId: state.user.credentials.userId,
+    photo: state.user.photo,
   }
 }
 

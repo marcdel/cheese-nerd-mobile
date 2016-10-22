@@ -3,6 +3,7 @@ import * as actions from '../actions/user';
 
 const INITIAL_STATE = {
   credentials: {},
+  photo: {},
   loggedIn: false,
 };
 
@@ -19,6 +20,11 @@ export default (state=INITIAL_STATE, action) => {
         ...state,
         credentials: {},
         loggedIn: false,
+      };
+    case actions.PHOTO_ADDED:
+      return {
+        ...state,
+        photo: action.photo,
       };
     default:
       return state;
