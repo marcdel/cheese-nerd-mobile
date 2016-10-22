@@ -10,7 +10,7 @@ import devToolsEnhancer from 'remote-redux-devtools';
 import { Provider } from 'react-redux';
 import { AppRegistry } from 'react-native';
 
-import App from './src/containers/App';
+import Root from './src/containers/Root';
 import reducers from './src/reducers';
 
 const store = createStore(reducers, devToolsEnhancer());
@@ -19,7 +19,7 @@ export default class CheeseNerdMobile extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App />
+        <Root />
       </Provider>
     );
   }
