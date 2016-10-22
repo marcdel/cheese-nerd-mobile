@@ -41,20 +41,20 @@ export class Login extends Component {
     var api = `https://graph.facebook.com/v2.3/${userId}/picture?width=200&redirect=false&access_token=${token}`;
 
     fetch(api)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.props.photoAdded(responseData.data);
-    }).done();
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.props.photoAdded(responseData.data);
+      }).done();
   }
 
   getFbUserNameEmail (userId, token) {
     var api = `https://graph.facebook.com/v2.3/${userId}?fields=name,email&access_token=${token}`;
 
     fetch(api)
-    .then((response) => response.json())
-    .then((responseData) => {
-      this.props.detailsAdded(responseData.name, responseData.email);
-    }).done();
+      .then((response) => response.json())
+      .then((responseData) => {
+        this.props.detailsAdded(responseData.name, responseData.email);
+      }).done();
   }
 
   handleLogin (data) {
