@@ -32,7 +32,7 @@ export class Login extends Component {
       if (!error) {
         this.handleLogin(data);
       } else {
-        console.log("No user logged in.");
+        this.props.logout();
       }
     });
   }
@@ -76,32 +76,7 @@ export class Login extends Component {
             loginBehavior={FBLoginManager.LoginBehaviors.Native}
             onLogin={(data) => {
               this.handleLogin(data);
-              console.log("Logged in!");
-              console.log(data);
-            }}
-            onLogout={() => {
-              this.props.logout();
-              console.log("Logged out.");
-            }}
-            onLoginFound={(data) => {
-              console.log("Existing login found.");
-              console.log(data);
-            }}
-            onLoginNotFound={() => {
-              console.log("No user logged in.");
-            }}
-            onError={(data) => {
-              console.log("ERROR");
-              console.log(data);
-            }}
-            onCancel={() => {
-              console.log("User cancelled.");
-            }}
-            onPermissionsMissing={(data) => {
-              console.log("Check permissions!");
-              console.log(data);
-            }}
-            />
+            }} />
         </Content>
       </Container>
     );
