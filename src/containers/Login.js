@@ -17,7 +17,7 @@ import {
   Button,
 } from 'native-base';
 
-import { login } from '../actions/user';
+import { login, logout } from '../actions/user';
 
 export class Login extends Component {
   constructor() {
@@ -84,24 +84,25 @@ export class Login extends Component {
               console.log("Logged in!");
               console.log(data);
             }}
-            onLogout={function(){
+            onLogout={() => {
+              this.props.logout();
               console.log("Logged out.");
             }}
             onLoginFound={(data) => {
               console.log("Existing login found.");
               console.log(data);
             }}
-            onLoginNotFound={function(){
+            onLoginNotFound={() => {
               console.log("No user logged in.");
             }}
-            onError={function(data){
+            onError={(data) => {
               console.log("ERROR");
               console.log(data);
             }}
-            onCancel={function(){
+            onCancel={() => {
               console.log("User cancelled.");
             }}
-            onPermissionsMissing={function(data){
+            onPermissionsMissing={(data) => {
               console.log("Check permissions!");
               console.log(data);
             }}
@@ -122,5 +123,5 @@ Login.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({ login }, dispatch)
+  (dispatch) => bindActionCreators({ login, logout }, dispatch)
 )(Login);

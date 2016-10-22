@@ -14,6 +14,12 @@ export default (state=INITIAL_STATE, action) => {
         credentials: action.credentials,
         loggedIn: true,
       };
+    case actions.LOGOUT:
+      return {
+        ...state,
+        credentials: {},
+        loggedIn: false,
+      };
     default:
       return state;
   }
