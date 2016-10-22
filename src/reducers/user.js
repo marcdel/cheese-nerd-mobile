@@ -2,7 +2,7 @@
 import * as actions from '../actions/user';
 
 const INITIAL_STATE = {
-  userId: 0,
+  credentials: {},
   loggedIn: false,
 };
 
@@ -11,8 +11,8 @@ export default (state=INITIAL_STATE, action) => {
     case actions.LOGIN:
       return {
         ...state,
-        userId: action.userId,
-        loggedIn: action.loggedIn,
+        credentials: action.credentials,
+        loggedIn: true,
       };
     default:
       return state;

@@ -22,13 +22,23 @@ import { login } from '../actions/user';
 export class Login extends Component {
   constructor() {
     super();
-    this.loginPressed = this.loginPressed.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
     this.getFbUserImage = this.getFbUserImage.bind(this);
     this.getFbUserNameEmail = this.getFbUserNameEmail.bind(this);
   }
 
+  componentDidMount () {
+    FBLoginManager.getCredentials((error, data) => {
+      if (!error) {
+        this.handleLogin(data);
+      } else {
+        console.log("No user logged in.");
+      }
+    });
+  }
+
   getFbUserImage (userId, token) {
-    var api = `https://graph.facebook.com/v2.3/${userId}/picture?redirect=false&access_token=${token}`;
+    var api = `https://graph.facebook.com/v2.3/${userId}/picture?width=200&redirect=false&access_token=${token}`;
 
     fetch(api)
     .then((response) => response.json())
@@ -45,26 +55,17 @@ export class Login extends Component {
     fetch(api)
     .then((response) => response.json())
     .then((responseData) => {
-      console.log("Date: ", responseData);
+      console.log("Data: ", responseData);
       console.log("User name: ", responseData.name);
-      console.log("User email: ", responseData.email);
+      console.log("User email: ", responseData.
+      email);
     }).done();
   }
 
-  loginPressed () {
-    let _this = this;
-    FBLoginManager.loginWithPermissions(["email","public_profile","user_friends"], function(error, data){
-      if (!error) {
-        console.log("Login data: ", data);
-        _this.getFbUserImage(data.credentials.userId, data.credentials.token);
-        _this.getFbUserNameEmail(data.credentials.userId, data.credentials.token);
-      } else {
-        console.log("Error: ", error);
-      }
-    });
-
-    const userId = Math.random();
-    this.props.login(userId);
+  handleLogin (data) {
+    this.props.login(data.credentials);
+    this.getFbUserImage(data.credentials.userId, data.credentials.token);
+    this.getFbUserNameEmail(data.credentials.userId, data.credentials.token);
   }
 
   render () {
@@ -78,14 +79,15 @@ export class Login extends Component {
           <FBLogin style={{ marginBottom: 10, }}
             permissions={["email","public_profile","user_friends"]}
             loginBehavior={FBLoginManager.LoginBehaviors.Native}
-            onLogin={function(data){
+            onLogin={(data) => {
+              this.handleLogin(data);
               console.log("Logged in!");
               console.log(data);
             }}
             onLogout={function(){
               console.log("Logged out.");
             }}
-            onLoginFound={function(data){
+            onLoginFound={(data) => {
               console.log("Existing login found.");
               console.log(data);
             }}
@@ -104,7 +106,6 @@ export class Login extends Component {
               console.log(data);
             }}
             />
-          <Button onPress={() => this.loginPressed()} block>Log In</Button>
         </Content>
       </Container>
     );

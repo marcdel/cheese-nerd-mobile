@@ -1,9 +1,8 @@
 export const LOGIN = 'LOGIN'
 
-export function login(userId) {
+export function login(credentials) {
   return {
     type: LOGIN,
-    userId: userId,
-    loggedIn: true,
+    credentials: credentials,
   };
 }
