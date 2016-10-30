@@ -10,6 +10,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 
+import {
+  Card,
+  CardItem,
+  Thumbnail,
+  Icon
+} from 'native-base';
+
 import { logout } from '../actions/user';
 
 export class Account extends Component {
@@ -21,16 +28,26 @@ export class Account extends Component {
     const photo = this.props.photo;
     return (
       <View>
-        <FBLogin style={{ marginBottom: 10, }}
-          permissions={["email","public_profile","user_friends"]}
-          loginBehavior={FBLoginManager.LoginBehaviors.Native}
-          onLogout={() => {
-            this.props.logout();
-            console.log("Logged out.");
-          }} />
-        <Text>{this.props.name}</Text>
-        <Text>{this.props.email}</Text>
-        <Image source={{ uri: photo.url }} style={{ width: photo.width, height: photo.height }} />
+        <Card>
+          <CardItem>
+            <Text>{this.props.name}</Text>
+            <Text note>{this.props.email}</Text>
+          </CardItem>
+
+          <CardItem>
+            <Image style={{ resizeMode: 'cover' }} source={{ uri: photo.url }} />
+          </CardItem>
+
+          <CardItem>
+            <FBLogin style={{ marginBottom: 10, }}
+              permissions={["email","public_profile","user_friends"]}
+              loginBehavior={FBLoginManager.LoginBehaviors.Native}
+              onLogout={() => {
+                this.props.logout();
+                console.log("Logged out.");
+              }} />
+            </CardItem>
+        </Card>
       </View>
     );
   }

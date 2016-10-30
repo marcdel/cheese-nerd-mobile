@@ -14,6 +14,7 @@ import {
   Header,
   Title,
   Content,
+  Footer,
   Button,
 } from 'native-base';
 
@@ -38,7 +39,7 @@ export class Login extends Component {
   }
 
   getFbUserImage (userId, token) {
-    var api = `https://graph.facebook.com/v2.3/${userId}/picture?width=200&redirect=false&access_token=${token}`;
+    var api = `https://graph.facebook.com/v2.3/${userId}/picture?width=400&redirect=false&access_token=${token}`;
 
     fetch(api)
       .then((response) => response.json())
@@ -70,14 +71,17 @@ export class Login extends Component {
           <Title>Log In</Title>
         </Header>
 
-        <Content style={{paddingTop: 250}}>
+        <Content>
+        </Content>
+
+        <Footer>
           <FBLogin style={{ marginBottom: 10, }}
             permissions={["email","public_profile","user_friends"]}
             loginBehavior={FBLoginManager.LoginBehaviors.Native}
             onLogin={(data) => {
               this.handleLogin(data);
             }} />
-        </Content>
+        </Footer>
       </Container>
     );
   }
