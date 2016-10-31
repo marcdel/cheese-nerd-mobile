@@ -44,9 +44,9 @@ export default class CheeseList extends Component {
             */}
           </CardItem>
 
-          <CardItem>
+          <CardItem onPress={() => {console.log("Add pressed")}}>
             <Icon name='ios-checkmark-circle-outline' />
-            <Text>Check-In</Text>
+            <Text>Add</Text>
             <Rating rating={cheese.rating} />
           </CardItem>
         </Card>

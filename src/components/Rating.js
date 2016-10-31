@@ -15,20 +15,35 @@ export default class Rating extends Component {
     super();
   }
 
+  rate(rating) {
+    const { editable, ratingChanged } = this.props;
+
+    if (editable && ratingChanged) {
+      console.log("Rated ", rating);
+    }
+  }
+
+  iconName(rating, iconRating) {
+    return rating >= iconRating ? 'ios-star' : 'ios-star-outline';
+  }
+
   render () {
-    const rating = this.props.rating;
+    const { rating, editable } = this.props;
+
     return (
       <Grid>
-        <Col><Icon name={ rating >= 1 ? 'ios-star' : 'ios-star-outline'} /></Col>
-        <Col><Icon name={ rating >= 2 ? 'ios-star' : 'ios-star-outline'} /></Col>
-        <Col><Icon name={ rating >= 3 ? 'ios-star' : 'ios-star-outline'} /></Col>
-        <Col><Icon name={ rating >= 4 ? 'ios-star' : 'ios-star-outline'} /></Col>
-        <Col><Icon name={ rating >= 5 ? 'ios-star' : 'ios-star-outline'} /></Col>
+        <Col><Icon onPress={() => this.rate(1)} name={this.iconName(rating, 1)} /></Col>
+        <Col><Icon onPress={() => this.rate(2)} name={this.iconName(rating, 2)} /></Col>
+        <Col><Icon onPress={() => this.rate(3)} name={this.iconName(rating, 3)} /></Col>
+        <Col><Icon onPress={() => this.rate(4)} name={this.iconName(rating, 4)} /></Col>
+        <Col><Icon onPress={() => this.rate(5)} name={this.iconName(rating, 5)} /></Col>
       </Grid>
     );
   }
 }
 
 Rating.propTypes = {
-  rating: React.PropTypes.number.isRequired
+  rating: React.PropTypes.number.isRequired,
+  editable: React.PropTypes.bool,
+  ratingChanged: React.PropTypes.func
 };
