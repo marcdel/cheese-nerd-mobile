@@ -7,9 +7,19 @@ import {
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+} from 'native-base';
+
+import { tabChanged } from '../actions/application';
 import { queryChanged, cheesesFiltered } from '../actions/search';
+import TitleBar from '../components/TitleBar';
 import CheeseList from '../components/CheeseList';
 import SearchBar from '../components/SearchBar';
+import BottomNav from '../components/BottomNav';
 
 export class Search extends Component {
   constructor() {
@@ -46,17 +56,33 @@ export class Search extends Component {
   }
 
   render () {
+    const { tab, tabChanged, query, filteredCheeses } = this.props;
+
     return (
-      <View>
-        <SearchBar query={this.props.query} textChanged={this.filterList} />
-        <CheeseList cheeses={this.props.filteredCheeses} />
-      </View>
+      <Container>
+        <Header>
+          <Content>
+            <TitleBar tab={tab} />
+          </Content>
+        </Header>
+
+        <Content>
+          <SearchBar query={query} textChanged={this.filterList} />
+          <CheeseList cheeses={filteredCheeses} />
+        </Content>
+
+        <Footer>
+          <BottomNav tab={tab} tabChanged={tabChanged} />
+        </Footer>
+      </Container>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    tab: state.application.tab,
+    cheeses: state.cheeses,
     query: state.search.query,
     filteredCheeses: state.search.filteredCheeses,
   }
@@ -68,5 +94,5 @@ Search.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({queryChanged, cheesesFiltered}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged, queryChanged, cheesesFiltered}, dispatch)
 )(Search);
