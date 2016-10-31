@@ -16,32 +16,25 @@ export default class ComponentTemplate extends Component {
     super();
   }
 
+  getContent (tab) {
+    switch(tab) {
+      case 'myBoard':
+        return (<MyBoard reviews={this.props.reviews} />);
+      case 'search':
+        return (<Search cheeses={this.props.cheeses} />);
+      case 'add':
+        return (<Add />);
+      case 'promo':
+        return (<Promo />);
+      case 'account':
+        return (<Account />);
+    }
+  }
+
   render () {
-    const tab = this.props.tab;
+    const { tab } = this.props;
 
-    return (
-      <View>
-        { tab === 'myBoard' &&
-          <MyBoard reviews={this.props.reviews} />
-        }
-
-        { tab === 'search' &&
-          <Search cheeses={this.props.cheeses} />
-        }
-
-        { tab === 'add' &&
-          <Add />
-        }
-
-        { tab === 'promo' &&
-          <Promo />
-        }
-
-        { tab === 'account' &&
-          <Account />
-        }
-      </View>
-    );
+    return this.getContent(tab);
   }
 }
 
