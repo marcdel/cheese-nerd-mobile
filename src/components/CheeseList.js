@@ -23,6 +23,10 @@ export default class CheeseList extends Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
+  addPressed (key) {
+    this.props.addPressed(key);
+  }
+
   renderItem (key) {
     const cheese = this.props.cheeses[key];
     const image = require('../img/330.png');
@@ -44,7 +48,7 @@ export default class CheeseList extends Component {
             */}
           </CardItem>
 
-          <CardItem onPress={() => {console.log("Add pressed")}}>
+          <CardItem onPress={() => this.addPressed(key)}>
             <Icon name='ios-checkmark-circle-outline' />
             <Text>Add</Text>
             <Rating rating={cheese.rating} />
@@ -65,6 +69,7 @@ export default class CheeseList extends Component {
 
 CheeseList.propTypes = {
   cheeses: React.PropTypes.object.isRequired,
+  addPressed: React.PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({ });

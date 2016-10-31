@@ -14,9 +14,10 @@ export class Add extends Component {
   }
 
   render () {
+    const { selectedCheese } = this.props;
     return (
       <View>
-        <Text>Add</Text>
+        <Text>{selectedCheese}</Text>
       </View>
     );
   }
@@ -24,6 +25,7 @@ export class Add extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    selectedCheese: state.add.selectedCheese
   }
 }
 

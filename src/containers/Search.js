@@ -7,6 +7,8 @@ import {
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import { tabChanged } from '../actions/application';
+import { cheeseSelected } from '../actions/add';
 import { queryChanged, cheesesFiltered } from '../actions/search';
 import CheeseList from '../components/CheeseList';
 import SearchBar from '../components/SearchBar';
@@ -16,6 +18,7 @@ export class Search extends Component {
     super();
 
     this.filterList = this.filterList.bind(this);
+    this.addPressed = this.addPressed.bind(this);
   }
 
   componentWillMount () {
@@ -45,11 +48,16 @@ export class Search extends Component {
     this.props.cheesesFiltered(filteredCheeses);
   }
 
+  addPressed (key) {
+    this.props.cheeseSelected(key);
+    this.props.tabChanged('add');
+  }
+
   render () {
     return (
       <View>
         <SearchBar query={this.props.query} textChanged={this.filterList} />
-        <CheeseList cheeses={this.props.filteredCheeses} />
+        <CheeseList cheeses={this.props.filteredCheeses} addPressed={this.addPressed} />
       </View>
     );
   }
@@ -68,5 +76,5 @@ Search.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({queryChanged, cheesesFiltered}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged, cheeseSelected, queryChanged, cheesesFiltered}, dispatch)
 )(Search);

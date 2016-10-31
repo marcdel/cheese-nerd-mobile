@@ -1,11 +1,11 @@
 /* @flow */
 const INITIAL_STATE = {
-  '1': {
+  1: {
     cheeseId: 'cheese1',
     notes: 'Pretty good, I guess.',
     rating: 2
   },
-  '2': {
+  2: {
     cheeseId: 'cheese2',
     notes: 'A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review.',
     rating: 3
