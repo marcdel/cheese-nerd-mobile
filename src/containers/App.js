@@ -32,7 +32,6 @@ export class App extends Component {
         <Content>
           <MainContent
             tab={tab}
-            cheeses={this.props.cheeses}
             reviews={this.props.reviews} />
         </Content>
 
@@ -47,7 +46,6 @@ export class App extends Component {
 const mapStateToProps = (state) => {
   return {
     tab: state.application.tab,
-    cheeses: state.cheeses,
     reviews: state.reviews
   }
 }

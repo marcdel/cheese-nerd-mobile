@@ -66,12 +66,12 @@ export class Search extends Component {
 const mapStateToProps = (state) => {
   return {
     query: state.search.query,
+    cheeses: state.cheeses,
     filteredCheeses: state.search.filteredCheeses,
   }
 }
 
 Search.propTypes = {
-  cheeses: React.PropTypes.object.isRequired,
 };
 
 export default connect(

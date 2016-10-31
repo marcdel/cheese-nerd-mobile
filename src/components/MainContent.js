@@ -19,7 +19,7 @@ export default class ComponentTemplate extends Component {
       case 'myBoard':
         return (<MyBoard reviews={this.props.reviews} />);
       case 'search':
-        return (<Search cheeses={this.props.cheeses} />);
+        return (<Search />);
       case 'add':
         return (<Add />);
       case 'promo':
@@ -32,6 +32,5 @@ export default class ComponentTemplate extends Component {
 
 ComponentTemplate.propTypes = {
   tab: React.PropTypes.string.isRequired,
-  cheeses: React.PropTypes.object.isRequired,
   reviews: React.PropTypes.object.isRequired,
 };
