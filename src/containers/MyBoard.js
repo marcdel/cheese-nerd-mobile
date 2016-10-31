@@ -7,6 +7,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {
+  Container,
+  Header,
+  Content,
+  Footer,
   List,
   ListItem,
   Card,
@@ -16,7 +20,10 @@ import {
   Icon
 } from 'native-base';
 
+import { tabChanged } from '../actions/application';
+import TitleBar from '../components/TitleBar';
 import Rating from '../components/Rating';
+import BottomNav from '../components/BottomNav';
 
 export class MyBoard extends Component {
   constructor() {
@@ -55,16 +62,33 @@ export class MyBoard extends Component {
   }
 
   render () {
+    const { tab, tabChanged, reviews } = this.props;
+
     return (
-      <List>
-        {Object.keys(this.props.reviews).map((key) => this.renderItem(key))}
-      </List>
+      <Container>
+        <Header>
+          <Content>
+            <TitleBar tab={tab} />
+          </Content>
+        </Header>
+
+        <Content>
+          <List>
+            {Object.keys(reviews).map((key) => this.renderItem(key))}
+          </List>
+        </Content>
+
+        <Footer>
+          <BottomNav tab={tab} tabChanged={tabChanged} />
+        </Footer>
+      </Container>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
+    tab: state.application.tab,
     cheeses: state.cheeses,
   }
 }
@@ -75,5 +99,5 @@ MyBoard.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged}, dispatch)
 )(MyBoard);

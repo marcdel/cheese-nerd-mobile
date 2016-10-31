@@ -6,17 +6,7 @@ import {
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {
-  Container,
-  Header,
-  Content,
-  Footer,
-} from 'native-base';
-
-import { tabChanged } from '../actions/application';
-import TitleBar from '../components/TitleBar';
 import MainContent from '../components/MainContent';
-import BottomNav from '../components/BottomNav';
 
 export class App extends Component {
 
@@ -24,22 +14,10 @@ export class App extends Component {
     const tab = this.props.tab;
 
     return (
-      <Container>
-        <Header>
-          <TitleBar tab={tab} />
-        </Header>
-
-        <Content>
-          <MainContent
-            tab={tab}
-            cheeses={this.props.cheeses}
-            reviews={this.props.reviews} />
-        </Content>
-
-        <Footer>
-          <BottomNav tab={this.props.tab} tabChanged={this.props.tabChanged} />
-        </Footer>
-      </Container>
+      <MainContent
+        tab={tab}
+        cheeses={this.props.cheeses}
+        reviews={this.props.reviews} />
     );
   }
 }
@@ -54,5 +32,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({tabChanged}, dispatch)
+  (dispatch) => bindActionCreators({}, dispatch)
 )(App);
