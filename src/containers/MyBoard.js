@@ -66,11 +66,11 @@ export class MyBoard extends Component {
 const mapStateToProps = (state) => {
   return {
     cheeses: state.cheeses,
+    reviews: state.reviews
   }
 }
 
 MyBoard.propTypes = {
-  reviews: React.PropTypes.object.isRequired,
 };
 
 export default connect(

@@ -30,9 +30,7 @@ export class App extends Component {
         </Header>
 
         <Content>
-          <MainContent
-            tab={tab}
-            reviews={this.props.reviews} />
+          <MainContent tab={tab} />
         </Content>
 
         <Footer>
@@ -46,7 +44,6 @@ export class App extends Component {
 const mapStateToProps = (state) => {
   return {
     tab: state.application.tab,
-    reviews: state.reviews
   }
 }
 
