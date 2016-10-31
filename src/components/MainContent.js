@@ -1,9 +1,5 @@
 /* @flow */
 import React, { Component } from "react";
-import {
-  View,
-  StyleSheet,
-} from 'react-native';
 
 import MyBoard from '../containers/MyBoard';
 import Search from '../containers/Search';
@@ -17,31 +13,20 @@ export default class ComponentTemplate extends Component {
   }
 
   render () {
-    const tab = this.props.tab;
+    const { tab } = this.props;
 
-    return (
-      <View>
-        { tab === 'myBoard' &&
-          <MyBoard reviews={this.props.reviews} />
-        }
-
-        { tab === 'search' &&
-          <Search cheeses={this.props.cheeses} />
-        }
-
-        { tab === 'add' &&
-          <Add />
-        }
-
-        { tab === 'promo' &&
-          <Promo />
-        }
-
-        { tab === 'account' &&
-          <Account />
-        }
-      </View>
-    );
+    switch(tab) {
+      case 'myBoard':
+        return (<MyBoard reviews={this.props.reviews} />);
+      case 'search':
+        return (<Search cheeses={this.props.cheeses} />);
+      case 'add':
+        return (<Add />);
+      case 'promo':
+        return (<Promo />);
+      case 'account':
+        return (<Account />);
+    }
   }
 }
 
