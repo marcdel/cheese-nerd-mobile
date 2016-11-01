@@ -11,6 +11,7 @@ import {bindActionCreators} from 'redux';
 
 import { tabChanged } from '../actions/application';
 import { reviewAdded } from '../actions/reviews';
+import { cheeseSelected } from '../actions/add';
 import AddDetail from '../components/AddDetail';
 
 export class Add extends Component {
@@ -18,6 +19,10 @@ export class Add extends Component {
     super();
 
     this.addReview = this.addReview.bind(this);
+  }
+
+  componentWillUnmount () {
+    this.props.cheeseSelected('');
   }
 
   addReview (review) {
@@ -49,5 +54,5 @@ Add.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({tabChanged, reviewAdded}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged, reviewAdded, cheeseSelected}, dispatch)
 )(Add);
