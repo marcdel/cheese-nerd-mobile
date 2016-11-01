@@ -19,7 +19,7 @@ export default class Rating extends Component {
     const { editable, ratingChanged } = this.props;
 
     if (editable && ratingChanged) {
-      console.log("Rated ", rating);
+      ratingChanged(rating);
     }
   }
 

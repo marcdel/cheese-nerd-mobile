@@ -25,8 +25,7 @@ export class MyBoard extends Component {
     this.renderItem = this.renderItem.bind(this);
   }
 
-  renderItem (key) {
-    const review = this.props.reviews[key];
+  renderItem (review, key) {
     const cheese = this.props.cheeses[review.cheeseId];
     const image = require('../img/330.png');
 
@@ -57,7 +56,7 @@ export class MyBoard extends Component {
   render () {
     return (
       <List>
-        {Object.keys(this.props.reviews).map((key) => this.renderItem(key))}
+        {this.props.reviews.map((review, key) => this.renderItem(review, key))}
       </List>
     );
   }
