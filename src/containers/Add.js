@@ -12,6 +12,7 @@ import {bindActionCreators} from 'redux';
 import { tabChanged } from '../actions/application';
 import { reviewAdded } from '../actions/reviews';
 import { cheeseSelected } from '../actions/add';
+import Search from '../containers/Search';
 import AddDetail from '../components/AddDetail';
 
 export class Add extends Component {
@@ -33,12 +34,8 @@ export class Add extends Component {
   render () {
     const { selectedCheese, cheeses } = this.props;
     return selectedCheese ?
-    (<AddDetail cheese={cheeses[selectedCheese]} addReview={this.addReview} />) :
-    (
-      <View>
-        <Text>No cheese selected</Text>
-      </View>
-    );
+      (<AddDetail cheese={cheeses[selectedCheese]} addReview={this.addReview} />) :
+      (<Search />);
   }
 }
 
