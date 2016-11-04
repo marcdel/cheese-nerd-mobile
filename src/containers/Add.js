@@ -27,7 +27,8 @@ export class Add extends Component {
   }
 
   addReview (review) {
-    this.props.reviewAdded(review);
+    const { ratings } = this.props;
+    this.props.reviewAdded(review, ratings[review.cheeseId]);
     this.props.tabChanged('myBoard');
   }
 
@@ -42,7 +43,8 @@ export class Add extends Component {
 const mapStateToProps = (state) => {
   return {
     selectedCheese: state.add.selectedCheese,
-    cheeses: state.cheeses.all
+    cheeses: state.cheeses.all,
+    ratings: state.cheeses.ratings
   }
 }
 

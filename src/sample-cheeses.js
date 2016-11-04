@@ -4,16 +4,16 @@ module.exports = {
     name : 'Gouda',
     image : 'http://www.cheese.com/media/img/cheese/Midnight_Moon_Gouda.jpg',
     desc : 'A semi-hard cheese celebrated for its rich, unique flavour and smooth texture.',
-    rating : 5,
-    reviewCount: 10
+    rating : 2,
+    reviewCount: 1
   },
   cheese2 : {
     id: 'cheese2',
     name : 'Brie',
     image : 'http://www.cheese.com/media/img/cheese/Brie.jpg',
     desc : 'Brie is a soft cheese named after the French region Brie, where it was originally created.',
-    rating : 0,
-    reviewCount: 0,
+    rating : 3,
+    reviewCount: 1,
   },
   cheese3 : {
     id: 'cheese3',
