@@ -66,7 +66,7 @@ export class Search extends Component {
 const mapStateToProps = (state) => {
   return {
     query: state.search.query,
-    cheeses: state.cheeses,
+    cheeses: state.cheeses.all,
     filteredCheeses: state.search.filteredCheeses,
   }
 }

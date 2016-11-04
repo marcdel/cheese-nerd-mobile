@@ -64,7 +64,7 @@ export class MyBoard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cheeses: state.cheeses,
+    cheeses: state.cheeses.all,
     reviews: state.reviews
   }
 }

@@ -1,19 +1,32 @@
 /* @flow */
 import * as reviewActions from '../actions/reviews'
 
-const INITIAL_STATE = require('../sample-cheeses');
+const INITIAL_STATE = {
+  all: require('../sample-cheeses'),
+  ratings: require('../sample-ratings'),
+}
 
 export default (state=INITIAL_STATE, action) => {
   switch (action.type) {
     case reviewActions.REVIEW_ADDED:
+    console.log(state.ratings[action.cheeseId][action.cheeseId]);
       return {
-        ...state,
-        [action.cheeseId]: {
-          ...state[action.cheeseId],
-          reviewCount: state[action.cheeseId].reviewCount + 1
+        all: {
+          ...state.all,
+          [action.cheeseId]: {
+            ...state.all[action.cheeseId],
+            reviewCount: state.all[action.cheeseId].reviewCount + 1,
+          }
+        },
+        ratings: {
+          ...state.ratings,
+          [action.cheeseId]: {
+            ...state.ratings[action.cheeseId],
+            [action.rating]: state.ratings[action.cheeseId][action.rating] + 1
+          }
         }
       };
     default:
-      return state;
+    return state;
   }
 };

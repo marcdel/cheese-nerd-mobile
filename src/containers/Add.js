@@ -42,7 +42,7 @@ export class Add extends Component {
 const mapStateToProps = (state) => {
   return {
     selectedCheese: state.add.selectedCheese,
-    cheeses: state.cheeses
+    cheeses: state.cheeses.all
   }
 }
 
