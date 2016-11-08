@@ -21,7 +21,6 @@ export default class TitleBar extends Component {
         { tab === 'search' && 'Search' }
         { tab === 'myBoard' && 'My Board' }
         { tab === 'add' && 'Add' }
-        { tab === 'promo' && 'Promo' }
         { tab === 'account' && 'Account' }
       </Title>
     );

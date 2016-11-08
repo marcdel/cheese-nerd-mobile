@@ -4,7 +4,6 @@ import React, { Component } from "react";
 import MyBoard from '../containers/MyBoard';
 import Search from '../containers/Search';
 import Add from '../containers/Add';
-import Promo from '../containers/Promo';
 import Account from '../containers/Account';
 
 export default class ComponentTemplate extends Component {
@@ -18,12 +17,8 @@ export default class ComponentTemplate extends Component {
     switch(tab) {
       case 'myBoard':
         return (<MyBoard />);
-      case 'search':
-        return (<Search />);
       case 'add':
         return (<Add />);
-      case 'promo':
-        return (<Promo />);
       case 'account':
         return (<Account />);
     }
