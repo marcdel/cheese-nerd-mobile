@@ -2,7 +2,7 @@
 import * as actions from '../actions/application';
 
 const INITIAL_STATE = {
-  tab: 'search',
+  tab: 'add',
 };
 
 export default (state=INITIAL_STATE, action) => {

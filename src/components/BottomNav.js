@@ -34,9 +34,7 @@ export default class BottomNav extends Component {
     return (
       <FooterTab theme={theme.tabs}>
         {this.button('myBoard', 'My Board', 'ios-restaurant')}
-        {this.button('search', 'Search', 'ios-search')}
         {this.button('add', 'Add', 'ios-add-circle')}
-        {this.button('promo', 'Promo', 'ios-ribbon')}
         {this.button('account', 'Account', 'ios-person')}
       </FooterTab>
     );
