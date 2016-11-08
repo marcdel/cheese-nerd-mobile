@@ -11,6 +11,8 @@ import {
   Icon
 } from 'native-base';
 
+import theme from '../../Themes/cheese';
+
 export default class BottomNav extends Component {
   constructor() {
     super();
@@ -23,7 +25,7 @@ export default class BottomNav extends Component {
 
     return (
       <Button active={active} onPress={() => this.props.tabChanged(name)}>
-        <Icon name={active ? icon : inactiveIcon} />
+        {text} <Icon name={active ? icon : inactiveIcon} />
       </Button>
     );
   }
@@ -32,7 +34,7 @@ export default class BottomNav extends Component {
     const tab = this.props.tab;
 
     return (
-      <FooterTab theme={theme.tabs}>
+      <FooterTab theme={theme}>
         {this.button('myBoard', 'My Board', 'ios-restaurant')}
         {this.button('add', 'Add', 'ios-add-circle')}
         {this.button('account', 'Account', 'ios-person')}
@@ -40,13 +42,6 @@ export default class BottomNav extends Component {
     );
   }
 }
-
-const theme = {
-  tabs: {
-    tabActiveBgColor: 'transparent',
-    tabBarActiveTextColor: '#3498db'
-  }
-};
 
 BottomNav.propTypes = {
   tab: React.PropTypes.string.isRequired,
