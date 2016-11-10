@@ -2,7 +2,7 @@ module.exports = {
   cheese1 : {
     id: 'cheese1',
     name : 'Gouda',
-    image : 'http://www.cheese.com/media/img/cheese/Midnight_Moon_Gouda.jpg',
+    image : 'https://www.cheese.com/media/img/cheese/Midnight_Moon_Gouda.jpg',
     desc : 'A semi-hard cheese celebrated for its rich, unique flavour and smooth texture.',
     rating : 2,
     reviewCount: 1

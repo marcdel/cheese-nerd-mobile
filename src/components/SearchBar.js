@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 
 import {
-  Container,
-  Header,
   InputGroup,
   Icon,
   Input,

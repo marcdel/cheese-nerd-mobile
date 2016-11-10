@@ -1,6 +1,8 @@
 /* @flow */
-import React, { Component, Image } from "react";
+import React, { Component } from "react";
 import {
+  Image,
+  View,
   StyleSheet,
 } from 'react-native';
 
@@ -11,6 +13,7 @@ import {
   CardItem,
   Thumbnail,
   Text,
+  InputGroup,
   Input,
   Icon,
   Button
@@ -22,13 +25,19 @@ export default class AddDetail extends Component {
   constructor() {
     super();
 
+    this.nameChanged = this.nameChanged.bind(this);
     this.noteChanged = this.noteChanged.bind(this);
     this.ratingChanged = this.ratingChanged.bind(this);
+    this.ageChanged = this.ageChanged.bind(this);
     this.addPressed = this.addPressed.bind(this);
   }
 
   componentWillMount () {
     this.setState({ rating: 0, notes: '' })
+  }
+
+  nameChanged(name) {
+    this.setState({name: name});
   }
 
   noteChanged(notes) {
@@ -39,11 +48,16 @@ export default class AddDetail extends Component {
     this.setState({rating: rating});
   }
 
+  ageChanged (age) {
+    this.setState({age: age});
+  }
+
   addPressed () {
     this.props.addReview({
       cheeseId: this.props.cheese.id,
       notes: this.state.notes,
-      rating: this.state.rating
+      rating: this.state.rating,
+      age: this.state.age,
     });
   }
 
@@ -54,18 +68,32 @@ export default class AddDetail extends Component {
     return (
       <Card>
         <CardItem>
-          <Thumbnail square source={image} />
-          <Text>{cheese.name}</Text>
-          <Text note>April 15, 2016</Text>
+          <Image style={{ resizeMode: 'cover' }} source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}} />
         </CardItem>
 
         <CardItem cardBody>
-          <Input placeholder='Notes' value={this.state.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  40}} />
-        </CardItem>
-        <CardItem onPress={() => this.addPressed()}>
-          <Icon name='ios-checkmark-circle-outline' />
-          <Text>Add</Text>
-          <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
+          <Text>Cheese Name</Text>
+          <InputGroup>
+            <Input placeholder="Ex. Roquefort" value={this.state.name} onChangeText={this.nameChanged} />
+          </InputGroup>
+
+          <Text>Your Rating</Text>
+          <View style={styles.ratingContainer}>
+            <View stlye={styles.rating}>
+              <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
+            </View>
+          </View>
+
+          <Text>Notes</Text>
+          <InputGroup>
+            <Input placeholder="Ex. This variety is round, deep, and perfectly balanced, with big creamy chunks. Sweet and fudgy, its linger is peppery."
+                   value={this.state.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  70}} />
+          </InputGroup>
+
+          <Text>Age</Text>
+          <InputGroup>
+            <Input placeholder="Ex. Cave aged, 2 to 4 months." value={this.state.age} onChangeText={this.ageChanged} />
+          </InputGroup>
         </CardItem>
       </Card>
     );
@@ -77,4 +105,14 @@ AddDetail.propTypes = {
   addReview: React.PropTypes.func.isRequired,
 };
 
-const styles = StyleSheet.create({ });
+const styles = StyleSheet.create({
+  ratingContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  rating: {
+    width: 175,
+  }
+});
