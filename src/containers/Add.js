@@ -34,9 +34,9 @@ export class Add extends Component {
 
   render () {
     const { selectedCheese, cheeses } = this.props;
-    return selectedCheese ?
-      (<AddDetail cheese={cheeses[selectedCheese]} addReview={this.addReview} />) :
-      (<Search />);
+    return (
+      <AddDetail cheese={cheeses["cheese1"]} addReview={this.addReview} />
+    );
   }
 }
 

@@ -16,7 +16,10 @@ import {
   InputGroup,
   Input,
   Icon,
-  Button
+  Picker,
+  Grid,
+  Col,
+  Button,
 } from 'native-base';
 
 import Rating from '../components/Rating';
@@ -29,11 +32,21 @@ export default class AddDetail extends Component {
     this.noteChanged = this.noteChanged.bind(this);
     this.ratingChanged = this.ratingChanged.bind(this);
     this.ageChanged = this.ageChanged.bind(this);
+    this.milkTypeChanged = this.milkTypeChanged.bind(this);
+    this.regionChanged = this.regionChanged.bind(this);
     this.addPressed = this.addPressed.bind(this);
   }
 
   componentWillMount () {
-    this.setState({ rating: 0, notes: '' })
+    this.setState({
+      name: '',
+      rating: 0,
+      notes: '',
+      age: '',
+      milkType: '',
+      pasteurization: '',
+      region: '',
+    });
   }
 
   nameChanged(name) {
@@ -52,12 +65,27 @@ export default class AddDetail extends Component {
     this.setState({age: age});
   }
 
+  milkTypeChanged(milkType) {
+    this.setState({milkType: milkType});
+  }
+
+  pasteurizationChanged(pasteurization) {
+    this.setState({pasteurization: pasteurization});
+  }
+
+  regionChanged(region) {
+    this.setState({region: region});
+  }
+
   addPressed () {
     this.props.addReview({
       cheeseId: this.props.cheese.id,
       notes: this.state.notes,
       rating: this.state.rating,
       age: this.state.age,
+      milkType: this.state.milkType,
+      pasteurization: this.state.pasteurization,
+      region: this.state.region,
     });
   }
 
@@ -90,10 +118,36 @@ export default class AddDetail extends Component {
                    value={this.state.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  70}} />
           </InputGroup>
 
+          <Text>Milk Type</Text>
+          <View style={{alignItems: "center", backgroundColor: "#ddd"}}>
+            <Picker
+              selectedValue={this.state.milkType}
+              onValueChange={this.milkTypeChanged}>
+              <Picker.Item label="Select Milk Type" value="" />
+              <Picker.Item label="Cow" value="Cow" />
+              <Picker.Item label="Sheep" value="Sheep" />
+              <Picker.Item label="Goat" value="Goat" />
+              <Picker.Item label="Buffalo" value="Buffalo" />
+            </Picker>
+          </View>
+
           <Text>Age</Text>
           <InputGroup>
             <Input placeholder="Ex. Cave aged, 2 to 4 months." value={this.state.age} onChangeText={this.ageChanged} />
           </InputGroup>
+
+          <Text>Pasteurization</Text>
+          <Grid>
+            <Col style={{ backgroundColor: '#fff', alignItems: "center", height: 30 }}>
+              <Text>Pasteurized</Text>
+            </Col>
+            <Col style={{ backgroundColor: '#D93735', alignItems: "center", height: 30  }}>
+              <Text>Raw</Text>
+            </Col>
+          </Grid>
+
+          <Text>Region</Text>
+          <Input placeholder="Ex. Midi-Pyrenees, France" value={this.state.region} onChangeText={this.regionChanged} />
         </CardItem>
       </Card>
     );
@@ -113,6 +167,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   rating: {
-    width: 175,
+    width: 150,
   }
 });
