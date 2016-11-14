@@ -32,11 +32,11 @@ export default class Rating extends Component {
 
     return (
       <Grid>
-        <Col><Icon onPress={() => this.rate(1)} name={this.iconName(rating, 1)} /></Col>
-        <Col><Icon onPress={() => this.rate(2)} name={this.iconName(rating, 2)} /></Col>
-        <Col><Icon onPress={() => this.rate(3)} name={this.iconName(rating, 3)} /></Col>
-        <Col><Icon onPress={() => this.rate(4)} name={this.iconName(rating, 4)} /></Col>
-        <Col><Icon onPress={() => this.rate(5)} name={this.iconName(rating, 5)} /></Col>
+        <Col><Icon style={styles.icon} onPress={() => this.rate(1)} name={this.iconName(rating, 1)} /></Col>
+        <Col><Icon style={styles.icon} onPress={() => this.rate(2)} name={this.iconName(rating, 2)} /></Col>
+        <Col><Icon style={styles.icon} onPress={() => this.rate(3)} name={this.iconName(rating, 3)} /></Col>
+        <Col><Icon style={styles.icon} onPress={() => this.rate(4)} name={this.iconName(rating, 4)} /></Col>
+        <Col><Icon style={styles.icon} onPress={() => this.rate(5)} name={this.iconName(rating, 5)} /></Col>
       </Grid>
     );
   }
@@ -47,3 +47,10 @@ Rating.propTypes = {
   editable: React.PropTypes.bool,
   ratingChanged: React.PropTypes.func
 };
+
+const styles = {
+  icon: {
+    height: 45,
+    width: 45,
+  }
+}

@@ -107,7 +107,7 @@ export default class AddDetail extends Component {
 
           <Text>Your Rating</Text>
           <View style={styles.ratingContainer}>
-            <View stlye={styles.rating}>
+            <View>
               <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
             </View>
           </View>
@@ -165,8 +165,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-  },
-  rating: {
-    width: 150,
   }
 });
