@@ -109,11 +109,7 @@ export default class AddDetail extends Component {
           </InputGroup>
 
           <Text>Your Rating</Text>
-          <View style={styles.container}>
-            <View>
-              <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
-            </View>
-          </View>
+          <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
 
           <Text>Notes</Text>
           <InputGroup>

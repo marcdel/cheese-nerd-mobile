@@ -19,7 +19,6 @@ export default class MilkType extends Component {
   render () {
     return (
       <View>
-        <Text>Milk Type</Text>
         <Button style={styles.container}>
           <Picker style={styles.picker}
             selectedValue={this.props.selectedValue}

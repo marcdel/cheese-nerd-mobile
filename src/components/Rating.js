@@ -1,6 +1,7 @@
 /* @flow */
 import React, { Component, Image } from "react";
 import {
+  View,
   StyleSheet,
 } from 'react-native';
 
@@ -31,13 +32,17 @@ export default class Rating extends Component {
     const { rating, editable } = this.props;
 
     return (
-      <Grid>
-        <Col><Icon style={styles.icon} onPress={() => this.rate(1)} name={this.iconName(rating, 1)} /></Col>
-        <Col><Icon style={styles.icon} onPress={() => this.rate(2)} name={this.iconName(rating, 2)} /></Col>
-        <Col><Icon style={styles.icon} onPress={() => this.rate(3)} name={this.iconName(rating, 3)} /></Col>
-        <Col><Icon style={styles.icon} onPress={() => this.rate(4)} name={this.iconName(rating, 4)} /></Col>
-        <Col><Icon style={styles.icon} onPress={() => this.rate(5)} name={this.iconName(rating, 5)} /></Col>
-      </Grid>
+      <View style={styles.container}>
+        <View>
+          <Grid>
+            <Col><Icon style={styles.icon} onPress={() => this.rate(1)} name={this.iconName(rating, 1)} /></Col>
+            <Col><Icon style={styles.icon} onPress={() => this.rate(2)} name={this.iconName(rating, 2)} /></Col>
+            <Col><Icon style={styles.icon} onPress={() => this.rate(3)} name={this.iconName(rating, 3)} /></Col>
+            <Col><Icon style={styles.icon} onPress={() => this.rate(4)} name={this.iconName(rating, 4)} /></Col>
+            <Col><Icon style={styles.icon} onPress={() => this.rate(5)} name={this.iconName(rating, 5)} /></Col>
+          </Grid>
+        </View>
+      </View>
     );
   }
 }
@@ -49,6 +54,12 @@ Rating.propTypes = {
 };
 
 const styles = {
+  container: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   icon: {
     height: 45,
     width: 45,
