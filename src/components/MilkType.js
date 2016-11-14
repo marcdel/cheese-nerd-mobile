@@ -8,6 +8,7 @@ import {
 
 import {
   Picker,
+  Button,
 } from 'native-base';
 
 export default class MilkType extends Component {
@@ -19,8 +20,8 @@ export default class MilkType extends Component {
     return (
       <View>
         <Text>Milk Type</Text>
-        <View style={styles.container}>
-          <Picker
+        <Button style={styles.container}>
+          <Picker style={styles.picker}
             selectedValue={this.props.selectedValue}
             onValueChange={this.props.onChange}>
             <Picker.Item label="Select Milk Type" value="" />
@@ -29,7 +30,7 @@ export default class MilkType extends Component {
             <Picker.Item label="Goat" value="Goat" />
             <Picker.Item label="Buffalo" value="Buffalo" />
           </Picker>
-        </View>
+        </Button>
       </View>
     );
   }
@@ -42,7 +43,18 @@ MilkType.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ddd"
+    backgroundColor: "#ddd",
+    height: 50,
+  },
+  picker: {
+    flex: 1,
+    alignSelf: "stretch",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   }
 });
