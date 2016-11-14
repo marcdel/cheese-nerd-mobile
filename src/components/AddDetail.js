@@ -23,6 +23,8 @@ import {
 } from 'native-base';
 
 import Rating from '../components/Rating';
+import Pasteurization from '../components/Pasteurization';
+import MilkType from '../components/MilkType';
 
 export default class AddDetail extends Component {
   constructor() {
@@ -34,6 +36,7 @@ export default class AddDetail extends Component {
     this.ageChanged = this.ageChanged.bind(this);
     this.milkTypeChanged = this.milkTypeChanged.bind(this);
     this.regionChanged = this.regionChanged.bind(this);
+    this.pasteurizationChanged = this.pasteurizationChanged.bind(this);
     this.addPressed = this.addPressed.bind(this);
   }
 
@@ -106,7 +109,7 @@ export default class AddDetail extends Component {
           </InputGroup>
 
           <Text>Your Rating</Text>
-          <View style={styles.ratingContainer}>
+          <View style={styles.container}>
             <View>
               <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
             </View>
@@ -118,33 +121,14 @@ export default class AddDetail extends Component {
                    value={this.state.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  70}} />
           </InputGroup>
 
-          <Text>Milk Type</Text>
-          <View style={{alignItems: "center", backgroundColor: "#ddd"}}>
-            <Picker
-              selectedValue={this.state.milkType}
-              onValueChange={this.milkTypeChanged}>
-              <Picker.Item label="Select Milk Type" value="" />
-              <Picker.Item label="Cow" value="Cow" />
-              <Picker.Item label="Sheep" value="Sheep" />
-              <Picker.Item label="Goat" value="Goat" />
-              <Picker.Item label="Buffalo" value="Buffalo" />
-            </Picker>
-          </View>
+          <MilkType selectedValue={this.state.milkType} onChange={this.milkTypeChanged} />
 
           <Text>Age</Text>
           <InputGroup>
             <Input placeholder="Ex. Cave aged, 2 to 4 months." value={this.state.age} onChangeText={this.ageChanged} />
           </InputGroup>
 
-          <Text>Pasteurization</Text>
-          <Grid>
-            <Col style={{ backgroundColor: '#fff', alignItems: "center", height: 30 }}>
-              <Text>Pasteurized</Text>
-            </Col>
-            <Col style={{ backgroundColor: '#D93735', alignItems: "center", height: 30  }}>
-              <Text>Raw</Text>
-            </Col>
-          </Grid>
+          <Pasteurization selected={this.state.pasteurization} onChange={this.pasteurizationChanged} />
 
           <Text>Region</Text>
           <Input placeholder="Ex. Midi-Pyrenees, France" value={this.state.region} onChangeText={this.regionChanged} />
@@ -160,10 +144,13 @@ AddDetail.propTypes = {
 };
 
 const styles = StyleSheet.create({
-  ratingContainer: {
+  container: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
+  pasteurizationButtons: {
+    width: 120,
+  },
 });
