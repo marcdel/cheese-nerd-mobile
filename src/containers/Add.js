@@ -16,7 +16,7 @@ import {
 
 import { tabChanged } from '../actions/application';
 import { reviewAdded } from '../actions/reviews';
-import { cheeseSelected } from '../actions/add';
+import { cheeseSelected, currentReviewChanged, currentReviewReset } from '../actions/add';
 
 import AddTitleBar from '../components/AddTitleBar';
 import AddDetail from '../components/AddDetail';
@@ -33,17 +33,16 @@ export class Add extends Component {
     this.props.cheeseSelected('');
   }
 
-  addReview (review) {
-    console.log(review);
-    return;
+  addReview () {
+    const { review, ratings } = this.props;
 
-    const { ratings } = this.props;
     this.props.reviewAdded(review, ratings[review.cheeseId]);
+    this.props.currentReviewReset();
     this.props.tabChanged('myBoard');
   }
 
   render () {
-    const { selectedCheese, cheeses } = this.props;
+    const { review, cheeses, currentReviewChanged } = this.props;
     return (
       <Container>
         <View>
@@ -51,7 +50,7 @@ export class Add extends Component {
         </View>
 
         <Content>
-          <AddDetail cheese={cheeses["cheese1"]} addReview={this.addReview} />
+          <AddDetail cheeses={cheeses} review={review} onReviewChanged={currentReviewChanged} />
         </Content>
 
         <Footer>
@@ -64,7 +63,7 @@ export class Add extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectedCheese: state.add.selectedCheese,
+    review: state.add.currentReview,
     cheeses: state.cheeses.all,
     ratings: state.cheeses.ratings
   }
@@ -75,5 +74,5 @@ Add.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({tabChanged, reviewAdded, cheeseSelected}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged, reviewAdded, cheeseSelected, currentReviewChanged, currentReviewReset}, dispatch)
 )(Add);

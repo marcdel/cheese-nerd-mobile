@@ -37,64 +37,71 @@ export default class AddDetail extends Component {
     this.milkTypeChanged = this.milkTypeChanged.bind(this);
     this.regionChanged = this.regionChanged.bind(this);
     this.pasteurizationChanged = this.pasteurizationChanged.bind(this);
-    this.addPressed = this.addPressed.bind(this);
+    this.onReviewChanged = this.onReviewChanged.bind(this);
   }
 
   componentWillMount () {
-    this.setState({
-      name: '',
-      rating: 0,
-      notes: '',
-      age: '',
-      milkType: '',
-      pasteurization: '',
-      region: '',
-    });
+    this.setState(this.props.review);
   }
 
   nameChanged(name) {
-    this.setState({name: name});
+    const cheeses = this.props.cheeses;
+    const cheeseId = Object.keys(cheeses).filter((key) => {
+      return cheeses[key].name === name
+    })[0];
+
+    this.setState({name: name, cheeseId: cheeseId });
+    this.onReviewChanged()
   }
 
   noteChanged(notes) {
     this.setState({notes: notes});
+    this.onReviewChanged()
   }
 
   ratingChanged (rating) {
     this.setState({rating: rating});
+    this.onReviewChanged()
   }
 
   ageChanged (age) {
     this.setState({age: age});
+    this.onReviewChanged()
   }
 
   milkTypeChanged(milkType) {
     this.setState({milkType: milkType});
+    this.onReviewChanged()
   }
 
   pasteurizationChanged(pasteurization) {
     this.setState({pasteurization: pasteurization});
+    this.onReviewChanged()
   }
 
   regionChanged(region) {
     this.setState({region: region});
+    this.onReviewChanged()
   }
 
-  addPressed () {
-    this.props.addReview({
-      cheeseId: this.props.cheese.id,
+  onReviewChanged() {
+    const review = {
+      cheeseId: this.state.cheeseId,
       notes: this.state.notes,
       rating: this.state.rating,
       age: this.state.age,
       milkType: this.state.milkType,
       pasteurization: this.state.pasteurization,
       region: this.state.region,
-    });
+    }
+
+console.log(review);
+    this.props.onReviewChanged(review);
   }
 
   render () {
     const image = require('../img/330.png');
-    const { cheese } = this.props;
+    const { cheeses } = this.props;
 
     return (
       <Card>
@@ -135,8 +142,9 @@ export default class AddDetail extends Component {
 }
 
 AddDetail.propTypes = {
-  cheese: React.PropTypes.object.isRequired,
-  addReview: React.PropTypes.func.isRequired,
+  cheeses: React.PropTypes.object.isRequired,
+  review: React.PropTypes.object.isRequired,
+  onReviewChanged: React.PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
