@@ -1,42 +1,20 @@
 /* @flow */
 import React, { Component } from "react";
 import {
+  View,
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {
-  Container,
-  Header,
-  Content,
-  Footer,
-} from 'native-base';
-
-import { tabChanged } from '../actions/application';
-import TitleBar from '../components/TitleBar';
 import MainContent from '../components/MainContent';
-import BottomNav from '../components/BottomNav';
 
 export class App extends Component {
-
   render () {
-    const tab = this.props.tab;
+    const { tab } = this.props;
 
     return (
-      <Container>
-        <Header>
-          <TitleBar tab={tab} />
-        </Header>
-
-        <Content>
-          <MainContent tab={tab} />
-        </Content>
-
-        <Footer>
-          <BottomNav tab={this.props.tab} tabChanged={this.props.tabChanged} />
-        </Footer>
-      </Container>
+      <MainContent tab={tab} />
     );
   }
 }
@@ -49,5 +27,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({tabChanged}, dispatch)
+  (dispatch) => bindActionCreators({}, dispatch)
 )(App);

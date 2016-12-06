@@ -6,6 +6,7 @@ import cheeses from './cheeses'
 import reviews from './reviews'
 import search from './search'
 import add from './add'
+import titleBar from './title-bar'
 
 const reducers = combineReducers({
   application,
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   cheeses,
   reviews,
   search,
-  add
+  add,
+  titleBar,
 });
 
 export default reducers;

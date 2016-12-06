@@ -1,19 +1,26 @@
 /* @flow */
 import React, { Component, Image } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {
+  View,
+  StyleSheet,
+} from 'react-native';
+
+import {
+  Container,
+  Content,
+  Footer,
+} from 'native-base';
 
 import { tabChanged } from '../actions/application';
 import { reviewAdded } from '../actions/reviews';
 import { cheeseSelected } from '../actions/add';
-import Search from '../containers/Search';
+
+import AddTitleBar from '../components/AddTitleBar';
 import AddDetail from '../components/AddDetail';
+import BottomNav from '../components/BottomNav';
 
 export class Add extends Component {
   constructor() {
@@ -27,6 +34,9 @@ export class Add extends Component {
   }
 
   addReview (review) {
+    console.log(review);
+    return;
+
     const { ratings } = this.props;
     this.props.reviewAdded(review, ratings[review.cheeseId]);
     this.props.tabChanged('myBoard');
@@ -35,7 +45,19 @@ export class Add extends Component {
   render () {
     const { selectedCheese, cheeses } = this.props;
     return (
-      <AddDetail cheese={cheeses["cheese1"]} addReview={this.addReview} />
+      <Container>
+        <View>
+          <AddTitleBar tab="add" onCancel={() => this.props.tabChanged('myBoard')} onAdd={this.addReview} />
+        </View>
+
+        <Content>
+          <AddDetail cheese={cheeses["cheese1"]} addReview={this.addReview} />
+        </Content>
+
+        <Footer>
+          <BottomNav tab="add" tabChanged={this.props.tabChanged} />
+        </Footer>
+      </Container>
     );
   }
 }

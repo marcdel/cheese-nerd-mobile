@@ -1,12 +1,16 @@
 /* @flow */
 import React, { Component, Image } from "react";
 import {
+  View,
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import {
+  Container,
+  Content,
+  Footer,
   List,
   ListItem,
   Card,
@@ -16,7 +20,10 @@ import {
   Icon
 } from 'native-base';
 
+import { tabChanged } from '../actions/application';
+import TitleBar from '../components/TitleBar';
 import Rating from '../components/Rating';
+import BottomNav from '../components/BottomNav';
 
 export class MyBoard extends Component {
   constructor() {
@@ -55,9 +62,21 @@ export class MyBoard extends Component {
 
   render () {
     return (
-      <List>
-        {this.props.reviews.map((review, key) => this.renderItem(review, key))}
-      </List>
+      <Container>
+        <View>
+          <TitleBar tab="myBoard" />
+        </View>
+
+        <Content>
+          <List>
+            {this.props.reviews.map((review, key) => this.renderItem(review, key))}
+          </List>
+        </Content>
+
+        <Footer>
+          <BottomNav tab="myBoard" tabChanged={this.props.tabChanged} />
+        </Footer>
+      </Container>
     );
   }
 }
@@ -74,5 +93,5 @@ MyBoard.propTypes = {
 
 export default connect(
   (state) => (mapStateToProps),
-  (dispatch) => bindActionCreators({/** _INSERT_ACTION_CREATORS_ **/}, dispatch)
+  (dispatch) => bindActionCreators({tabChanged}, dispatch)
 )(MyBoard);
