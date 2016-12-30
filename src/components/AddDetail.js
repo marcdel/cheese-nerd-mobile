@@ -37,71 +37,39 @@ export default class AddDetail extends Component {
     this.milkTypeChanged = this.milkTypeChanged.bind(this);
     this.regionChanged = this.regionChanged.bind(this);
     this.pasteurizationChanged = this.pasteurizationChanged.bind(this);
-    this.onReviewChanged = this.onReviewChanged.bind(this);
-  }
-
-  componentWillMount () {
-    this.setState(this.props.review);
   }
 
   nameChanged(name) {
-    const cheeses = this.props.cheeses;
-    const cheeseId = Object.keys(cheeses).filter((key) => {
-      return cheeses[key].name === name
-    })[0];
-
-    this.setState({name: name, cheeseId: cheeseId });
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, name: name});
   }
 
   noteChanged(notes) {
-    this.setState({notes: notes});
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, notes: notes});
   }
 
   ratingChanged (rating) {
-    this.setState({rating: rating});
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, rating: rating});
   }
 
   ageChanged (age) {
-    this.setState({age: age});
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, age: age});
   }
 
   milkTypeChanged(milkType) {
-    this.setState({milkType: milkType});
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, milkType: milkType});
   }
 
   pasteurizationChanged(pasteurization) {
-    this.setState({pasteurization: pasteurization});
-    this.onReviewChanged()
+    this.props.onReviewChanged({...this.props.review, pasteurization: pasteurization});
   }
 
   regionChanged(region) {
-    this.setState({region: region});
-    this.onReviewChanged()
-  }
-
-  onReviewChanged() {
-    const review = {
-      cheeseId: this.state.cheeseId,
-      notes: this.state.notes,
-      rating: this.state.rating,
-      age: this.state.age,
-      milkType: this.state.milkType,
-      pasteurization: this.state.pasteurization,
-      region: this.state.region,
-    }
-
-console.log(review);
-    this.props.onReviewChanged(review);
+    this.props.onReviewChanged({...this.props.review, region: region});
   }
 
   render () {
     const image = require('../img/330.png');
-    const { cheeses } = this.props;
+    const { cheeses, review } = this.props;
 
     return (
       <Card>
@@ -112,29 +80,29 @@ console.log(review);
         <CardItem cardBody>
           <Text>Cheese Name</Text>
           <InputGroup>
-            <Input placeholder="Ex. Roquefort" value={this.state.name} onChangeText={this.nameChanged} />
+            <Input placeholder="Ex. Roquefort" value={review.name} onChangeText={this.nameChanged} />
           </InputGroup>
 
           <Text>Your Rating</Text>
-          <Rating rating={this.state.rating} editable={true} ratingChanged={this.ratingChanged} />
+          <Rating rating={review.rating} editable={true} ratingChanged={this.ratingChanged} />
 
           <Text>Notes</Text>
           <InputGroup>
             <Input placeholder="Ex. This variety is round, deep, and perfectly balanced, with big creamy chunks. Sweet and fudgy, its linger is peppery."
-                   value={this.state.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  70}} />
+                   value={review.notes} onChangeText={this.noteChanged} multiline={true} style={{height:  70}} />
           </InputGroup>
 
-          <MilkType selectedValue={this.state.milkType} onChange={this.milkTypeChanged} />
+          <MilkType selectedValue={review.milkType} onChange={this.milkTypeChanged} />
 
           <Text>Age</Text>
           <InputGroup>
-            <Input placeholder="Ex. Cave aged, 2 to 4 months." value={this.state.age} onChangeText={this.ageChanged} />
+            <Input placeholder="Ex. Cave aged, 2 to 4 months." value={review.age} onChangeText={this.ageChanged} />
           </InputGroup>
 
-          <Pasteurization selected={this.state.pasteurization} onChange={this.pasteurizationChanged} />
+          <Pasteurization selected={review.pasteurization} onChange={this.pasteurizationChanged} />
 
           <Text>Region</Text>
-          <Input placeholder="Ex. Midi-Pyrenees, France" value={this.state.region} onChangeText={this.regionChanged} />
+          <Input placeholder="Ex. Midi-Pyrenees, France" value={review.region} onChangeText={this.regionChanged} />
         </CardItem>
       </Card>
     );

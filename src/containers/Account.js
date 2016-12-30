@@ -55,7 +55,6 @@ export class Account extends Component {
                 loginBehavior={FBLoginManager.LoginBehaviors.Native}
                 onLogout={() => {
                   this.props.logout();
-                  console.log("Logged out.");
                 }} />
               </CardItem>
           </Card>

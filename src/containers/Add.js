@@ -27,22 +27,35 @@ export class Add extends Component {
     super();
 
     this.addReview = this.addReview.bind(this);
+    this.getCheeseId = this.getCheeseId.bind(this);
   }
 
   componentWillUnmount () {
     this.props.cheeseSelected('');
   }
 
+  getCheeseId(name) {
+    const cheeses = this.props.cheeses;
+    const cheeseId = Object.keys(cheeses).filter((key) => {
+      return cheeses[key].name === name;
+    })[0];
+
+    return cheeseId;
+  }
+
   addReview () {
     const { review, ratings } = this.props;
 
+    review.cheeseId = this.getCheeseId(review.name);
     this.props.reviewAdded(review, ratings[review.cheeseId]);
+
     this.props.currentReviewReset();
     this.props.tabChanged('myBoard');
   }
 
   render () {
     const { review, cheeses, currentReviewChanged } = this.props;
+
     return (
       <Container>
         <View>
