@@ -25,16 +25,13 @@ import BottomNav from '../components/BottomNav';
 export class Add extends Component {
   constructor() {
     super();
-
-    this.addReview = this.addReview.bind(this);
-    this.getCheeseId = this.getCheeseId.bind(this);
   }
 
   componentWillUnmount () {
     this.props.cheeseSelected('');
   }
 
-  getCheeseId(name) {
+  getCheeseId = (name) => {
     const cheeses = this.props.cheeses;
     const cheeseId = Object.keys(cheeses).filter((key) => {
       return cheeses[key].name === name;
@@ -43,7 +40,7 @@ export class Add extends Component {
     return cheeseId;
   }
 
-  addReview () {
+  addReview = () => {
     const { review, ratings } = this.props;
 
     review.cheeseId = this.getCheeseId(review.name);

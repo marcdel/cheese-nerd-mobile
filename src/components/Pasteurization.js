@@ -13,11 +13,9 @@ import {
 export default class Pasteurization extends Component {
   constructor(props) {
     super(props);
-
-    this.isSelected = this.isSelected.bind(this);
   }
 
-  isSelected(button) {
+  isSelected = (button) => {
     return this.props.selected === button;
   }
 

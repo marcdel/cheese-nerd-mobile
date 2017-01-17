@@ -28,11 +28,9 @@ import BottomNav from '../components/BottomNav';
 export class MyBoard extends Component {
   constructor() {
     super();
-
-    this.renderItem = this.renderItem.bind(this);
   }
 
-  renderItem (review, key) {
+  renderItem = (review, key) => {
     const cheese = this.props.cheeses[review.cheeseId];
     const image = require('../img/330.png');
 

@@ -19,15 +19,13 @@ import Rating from '../components/Rating';
 export default class CheeseList extends Component {
   constructor() {
     super();
-
-    this.renderItem = this.renderItem.bind(this);
   }
 
-  addPressed (key) {
+  addPressed = (key) => {
     this.props.addPressed(key);
   }
 
-  renderItem (key) {
+  renderItem = (key) => {
     const cheese = this.props.cheeses[key];
     const image = require('../img/330.png');
 

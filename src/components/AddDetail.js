@@ -29,45 +29,37 @@ import MilkType from '../components/MilkType';
 export default class AddDetail extends Component {
   constructor() {
     super();
-
-    this.nameChanged = this.nameChanged.bind(this);
-    this.noteChanged = this.noteChanged.bind(this);
-    this.ratingChanged = this.ratingChanged.bind(this);
-    this.ageChanged = this.ageChanged.bind(this);
-    this.milkTypeChanged = this.milkTypeChanged.bind(this);
-    this.regionChanged = this.regionChanged.bind(this);
-    this.pasteurizationChanged = this.pasteurizationChanged.bind(this);
   }
 
-  nameChanged(name) {
+  nameChanged = (name) => {
     this.props.onReviewChanged({...this.props.review, name: name});
   }
 
-  noteChanged(notes) {
+  noteChanged = (notes) => {
     this.props.onReviewChanged({...this.props.review, notes: notes});
   }
 
-  ratingChanged (rating) {
+  ratingChanged = (rating) => {
     this.props.onReviewChanged({...this.props.review, rating: rating});
   }
 
-  ageChanged (age) {
+  ageChanged = (age) => {
     this.props.onReviewChanged({...this.props.review, age: age});
   }
 
-  milkTypeChanged(milkType) {
+  milkTypeChanged = (milkType) => {
     this.props.onReviewChanged({...this.props.review, milkType: milkType});
   }
 
-  pasteurizationChanged(pasteurization) {
+  pasteurizationChanged = (pasteurization) => {
     this.props.onReviewChanged({...this.props.review, pasteurization: pasteurization});
   }
 
-  regionChanged(region) {
+  regionChanged = (region) => {
     this.props.onReviewChanged({...this.props.review, region: region});
   }
 
-  render () {
+  render() {
     const image = require('../img/330.png');
     const { cheeses, review } = this.props;
 

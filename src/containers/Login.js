@@ -23,12 +23,9 @@ import { login, logout, photoAdded, detailsAdded } from '../actions/user';
 export class Login extends Component {
   constructor() {
     super();
-    this.handleLogin = this.handleLogin.bind(this);
-    this.getFbUserImage = this.getFbUserImage.bind(this);
-    this.getFbUserNameEmail = this.getFbUserNameEmail.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     FBLoginManager.getCredentials((error, data) => {
       if (!error) {
         this.handleLogin(data);
@@ -38,7 +35,7 @@ export class Login extends Component {
     });
   }
 
-  getFbUserImage (userId, token) {
+  getFbUserImage = (userId, token) => {
     var api = `https://graph.facebook.com/v2.3/${userId}/picture?width=400&redirect=false&access_token=${token}`;
 
     fetch(api)
@@ -48,7 +45,7 @@ export class Login extends Component {
       }).done();
   }
 
-  getFbUserNameEmail (userId, token) {
+  getFbUserNameEmail = (userId, token) => {
     var api = `https://graph.facebook.com/v2.3/${userId}?fields=name,email&access_token=${token}`;
 
     fetch(api)
@@ -58,13 +55,13 @@ export class Login extends Component {
       }).done();
   }
 
-  handleLogin (data) {
+  handleLogin = (data) => {
     this.props.login(data.credentials);
     this.getFbUserImage(data.credentials.userId, data.credentials.token);
     this.getFbUserNameEmail(data.credentials.userId, data.credentials.token);
   }
 
-  render () {
+  render() {
     return (
       <Container>
         <Header>

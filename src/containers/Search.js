@@ -16,16 +16,13 @@ import SearchBar from '../components/SearchBar';
 export class Search extends Component {
   constructor() {
     super();
-
-    this.filterList = this.filterList.bind(this);
-    this.addPressed = this.addPressed.bind(this);
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.filterList(this.props.query);
   }
 
-  filterList (query) {
+  filterList = (query) => {
     const cheeses = this.props.cheeses;
 
     this.props.queryChanged(query);
@@ -48,12 +45,12 @@ export class Search extends Component {
     this.props.cheesesFiltered(filteredCheeses);
   }
 
-  addPressed (key) {
+  addPressed = (key) => {
     this.props.cheeseSelected(key);
     this.props.tabChanged('add');
   }
 
-  render () {
+  render() {
     return (
       <View>
         <SearchBar query={this.props.query} textChanged={this.filterList} />
