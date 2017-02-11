@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import {
   View,
   StyleSheet,
+	AsyncStorage,
 } from 'react-native';
 
 import {
@@ -32,7 +33,15 @@ export class Add extends Component {
   }
 
   addReview = () => {
-    const { review } = this.props;
+    const { review, reviews } = this.props;
+
+		const new_list = JSON.stringify([review, ...reviews]);
+		console.log({new_list});
+    try {
+			AsyncStorage.setItem('@cheesenerd:reviews', new_list);
+    } catch (error) {
+			console.log({error});
+    }
 
     this.props.reviewAdded(review);
 
@@ -64,6 +73,7 @@ export class Add extends Component {
 const mapStateToProps = (state) => {
   return {
     review: state.add.currentReview,
+		reviews: state.reviews,
   }
 }
 
