@@ -61,7 +61,7 @@ export default class AddDetail extends Component {
 
   render() {
     const image = require('../img/330.png');
-    const { cheeses, review } = this.props;
+    const { review } = this.props;
 
     return (
       <Card>
@@ -102,7 +102,6 @@ export default class AddDetail extends Component {
 }
 
 AddDetail.propTypes = {
-  cheeses: React.PropTypes.object.isRequired,
   review: React.PropTypes.object.isRequired,
   onReviewChanged: React.PropTypes.func.isRequired,
 };

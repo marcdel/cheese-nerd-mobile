@@ -31,27 +31,17 @@ export class Add extends Component {
     this.props.cheeseSelected('');
   }
 
-  getCheeseId = (name) => {
-    const cheeses = this.props.cheeses;
-    const cheeseId = Object.keys(cheeses).filter((key) => {
-      return cheeses[key].name === name;
-    })[0];
-
-    return cheeseId;
-  }
-
   addReview = () => {
-    const { review, ratings } = this.props;
+    const { review } = this.props;
 
-    review.cheeseId = this.getCheeseId(review.name);
-    this.props.reviewAdded(review, ratings[review.cheeseId]);
+    this.props.reviewAdded(review);
 
     this.props.currentReviewReset();
     this.props.tabChanged('myBoard');
   }
 
   render () {
-    const { review, cheeses, currentReviewChanged } = this.props;
+    const { review, currentReviewChanged } = this.props;
 
     return (
       <Container>
@@ -60,7 +50,7 @@ export class Add extends Component {
         </View>
 
         <Content>
-          <AddDetail cheeses={cheeses} review={review} onReviewChanged={currentReviewChanged} />
+          <AddDetail review={review} onReviewChanged={currentReviewChanged} />
         </Content>
 
         <Footer>
@@ -74,8 +64,6 @@ export class Add extends Component {
 const mapStateToProps = (state) => {
   return {
     review: state.add.currentReview,
-    cheeses: state.cheeses.all,
-    ratings: state.cheeses.ratings
   }
 }
 
