@@ -18,6 +18,7 @@ import {
 import { tabChanged } from '../actions/application';
 import { reviewAdded } from '../actions/reviews';
 import { cheeseSelected, currentReviewChanged, currentReviewReset } from '../actions/add';
+import Repository from '../models/repository';
 
 import AddTitleBar from '../components/AddTitleBar';
 import AddDetail from '../components/AddDetail';
@@ -35,13 +36,10 @@ export class Add extends Component {
   addReview = () => {
     const { review, reviews } = this.props;
 
-		const new_list = JSON.stringify([review, ...reviews]);
-		console.log({new_list});
-    try {
-			AsyncStorage.setItem('@cheesenerd:reviews', new_list);
-    } catch (error) {
-			console.log({error});
-    }
+		const updated_reviews = JSON.stringify([review, ...reviews]);
+
+    const repo = new Repository();
+    repo.saveAllReviews(updated_reviews);
 
     this.props.reviewAdded(review);
 
