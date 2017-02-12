@@ -31,7 +31,6 @@ export class MyBoard extends Component {
   }
 
   renderItem = (review, key) => {
-    const cheese = this.props.cheeses[review.cheeseId];
     const image = require('../img/330.png');
 
     return (
@@ -39,8 +38,8 @@ export class MyBoard extends Component {
         <Card>
           <CardItem>
             <Icon name='ios-image' />
-            <Text>{cheese.name}</Text>
-            <Text note>{cheese.name}</Text>
+            <Text>{review.name}</Text>
+            <Text note>{review.name}</Text>
           </CardItem>
 
           <CardItem cardBody>
@@ -81,7 +80,6 @@ export class MyBoard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cheeses: state.cheeses.all,
     reviews: state.reviews
   }
 }

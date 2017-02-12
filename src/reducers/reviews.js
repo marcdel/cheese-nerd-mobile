@@ -1,27 +1,20 @@
 /* @flow */
 import * as actions from '../actions/reviews'
 
-const INITIAL_STATE = [
-  {
-    cheeseId: 'cheese1',
-    notes: 'Pretty good, I guess.',
-    rating: 2
-  },
-  {
-    cheeseId: 'cheese2',
-    notes: 'A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review. A longer review.',
-    rating: 3
-  }
-];
+const INITIAL_STATE = [];
 
 export default (state=INITIAL_STATE, action) => {
   switch (action.type) {
     case actions.REVIEW_ADDED:
       return [
         {
-          cheeseId: action.cheeseId,
+          name: action.name,
           notes: action.notes,
-          rating: action.rating
+          rating: action.rating,
+          age: action.age,
+          milkType: action.milkType,
+          pasteurization: action.pasteurization,
+          region: action.region,
         },
         ...state
       ]

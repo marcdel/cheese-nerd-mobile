@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import {
   View,
   StyleSheet,
+	AsyncStorage,
 } from 'react-native';
 
 import {
@@ -31,27 +32,25 @@ export class Add extends Component {
     this.props.cheeseSelected('');
   }
 
-  getCheeseId = (name) => {
-    const cheeses = this.props.cheeses;
-    const cheeseId = Object.keys(cheeses).filter((key) => {
-      return cheeses[key].name === name;
-    })[0];
-
-    return cheeseId;
-  }
-
   addReview = () => {
-    const { review, ratings } = this.props;
+    const { review, reviews } = this.props;
 
-    review.cheeseId = this.getCheeseId(review.name);
-    this.props.reviewAdded(review, ratings[review.cheeseId]);
+		const new_list = JSON.stringify([review, ...reviews]);
+		console.log({new_list});
+    try {
+			AsyncStorage.setItem('@cheesenerd:reviews', new_list);
+    } catch (error) {
+			console.log({error});
+    }
+
+    this.props.reviewAdded(review);
 
     this.props.currentReviewReset();
     this.props.tabChanged('myBoard');
   }
 
   render () {
-    const { review, cheeses, currentReviewChanged } = this.props;
+    const { review, currentReviewChanged } = this.props;
 
     return (
       <Container>
@@ -60,7 +59,7 @@ export class Add extends Component {
         </View>
 
         <Content>
-          <AddDetail cheeses={cheeses} review={review} onReviewChanged={currentReviewChanged} />
+          <AddDetail review={review} onReviewChanged={currentReviewChanged} />
         </Content>
 
         <Footer>
@@ -74,8 +73,7 @@ export class Add extends Component {
 const mapStateToProps = (state) => {
   return {
     review: state.add.currentReview,
-    cheeses: state.cheeses.all,
-    ratings: state.cheeses.ratings
+		reviews: state.reviews,
   }
 }
 
