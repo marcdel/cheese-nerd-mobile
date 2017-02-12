@@ -9,17 +9,17 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 import { reviewAdded } from '../actions/reviews';
+import Repository from '../models/repository';
 import MainContent from '../components/MainContent';
 
 export class App extends Component {
 	componentDidMount() {
-		AsyncStorage.getItem('@cheesenerd:reviews').then((reviews) => {
-			if(!reviews) return;
-
-			JSON.parse(reviews).forEach((review) => {
-				this.props.reviewAdded(review);
-			});
-		}).done();
+    const repo = new Repository();
+    repo.getAllReviews().then((reviews) => {
+      reviews.forEach((review) => {
+        this.props.reviewAdded(review);
+      });
+    });
 	}
 
   render () {
